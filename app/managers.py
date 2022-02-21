@@ -18,12 +18,12 @@ class ActorManager:
         self._connection.commit()
 
     def all(self):
-        actor_formats_cursor = self._connection.execute(
+        actor_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name "
             f"FROM {self.table_name}"
         )
 
-        return [Actor(*row) for row in actor_formats_cursor]
+        return [Actor(*row) for row in actor_cursor]
 
     def update(
             self,
