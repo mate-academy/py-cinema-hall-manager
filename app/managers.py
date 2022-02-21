@@ -25,7 +25,12 @@ class ActorManager:
 
         return [Actor(*row) for row in actor_formats_cursor]
 
-    def update(self, id_to_update: int, new_first_mame: str, new_last_name: str):
+    def update(
+            self,
+            id_to_update: int,
+            new_first_mame: str,
+            new_last_name: str
+    ):
         self._connection.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name = ?, last_name = ? "
