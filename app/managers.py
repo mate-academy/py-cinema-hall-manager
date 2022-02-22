@@ -42,11 +42,3 @@ class ActorManager:
         )
 
         self._connection.commit()
-
-
-if __name__ == '__main__':
-    manager = ActorManager()
-    # manager.create("Liudochka", "Chuzdiuk")
-    # manager.update(2, "Valera", "Valerovych")
-    # manager.delete(2)
-    # print(manager.all())
