@@ -6,16 +6,19 @@ from models import Actor
 
 class ActorManager:
     def __init__(self):
-        self.db = sqlite3.connect(r'D:\unisheva\mate\py-cinema-hall-manager\cinema.sqlite')
+        self.db = sqlite3.connect(r'cinema.sqlite')
         self.cursor = self.db.cursor()
 
     def create(self, first_name, last_name):
-        create_string = f"INSERT INTO actor(first_name, last_name) VALUES('{first_name}', '{last_name}')"
+        create_string = f"INSERT INTO actor(first_name, last_name) " \
+                        f"VALUES('{first_name}', '{last_name}')"
         self.cursor.execute(create_string)
         self.db.commit()
 
     def update(self, id_: int, first_name, last_name):
-        update_string = f"UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?"
+        update_string = "UPDATE actor " \
+                        "SET first_name = ?, last_name = ?" \
+                        " WHERE id = ?"
         self.cursor.execute(update_string, (first_name, last_name, id_))
         self.db.commit()
 
