@@ -5,7 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self):
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema.sqlite")
         self.table_name = "actor"
 
     def create(self, first_name, last_name):
@@ -24,12 +24,14 @@ class ActorManager:
 
         return [Actor(*row) for row in actor_cursor]
 
-    def update(self, id_to_update: int, first_name: str, last_name: str):
+    def update(self, id_to_update: int,
+               new_first_name: str,
+               new_last_name: str):
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ?"
             "WHERE id = ?",
-            (first_name, last_name, id_to_update)
+            (new_first_name, new_last_name, id_to_update)
         )
 
         self._connection.commit()
