@@ -11,7 +11,7 @@ class ActorManager:
     def create(self, first_name: str, last_name: str):
         self._con.execute(
             f"INSERT INTO {self.table_name}(first_name, last_name)"
-            "VALUES (?, ?)", 
+            "VALUES (?, ?)",
             (first_name, last_name)
         )
         self._con.commit()
@@ -27,7 +27,7 @@ class ActorManager:
         self._con.execute(
             f"UPDATE {self.table_name}"
             "SET first_name = ?, last_name = ?"
-            "WHERE id = ?", 
+            "WHERE id = ?",
             (id_, new_name, new_surname)
         )
         self._con.commit()
