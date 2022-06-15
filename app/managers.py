@@ -24,8 +24,7 @@ class ActorManager:
 
     def update(self, id_: int, new_name: str, new_surname: str):
         self._con.execute(
-            f"UPDATE {self.table_name} 
-            SET first_name = ?, last_name = ? 
+            f"UPDATE {self.table_name} SET first_name = ?, last_name = ? 
             WHERE id = ?", 
             (id_, new_name, new_surname)
         )
