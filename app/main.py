@@ -15,4 +15,3 @@ if __name__ == "__main__":
     print(Actor.objects.all())
     Actor.objects.update(3, "Not", "Checked")
     Actor.objects.update(3, "Now it", "is")
-    
