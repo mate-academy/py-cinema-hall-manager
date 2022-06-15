@@ -1,4 +1,5 @@
 import sqlite3
+from models import Actor
 
 
 class ActorManager:
@@ -8,7 +9,7 @@ class ActorManager:
 
     def all(self):
         actors_list = self.connection.execute("SELECT * FROM actor")
-        return [actor for actor in actors_list]
+        return [Actor(*actor) for actor in actors_list]
 
     def create(self, first_name: str, last_name: str):
         self.connection.execute(f"INSERT INTO {self.table_name} "
