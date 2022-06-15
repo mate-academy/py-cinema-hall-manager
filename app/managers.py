@@ -10,8 +10,7 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str):
         self._con.execute(
-            f"INSERT INTO {self.table_name}(first_name, last_name) 
-            VALUES (?, ?)", 
+            f"INSERT INTO {self.table_name}(first_name, last_name) VALUES (?, ?)", 
             (first_name, last_name)
         )
         self._con.commit()
