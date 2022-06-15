@@ -15,10 +15,10 @@ class ActorManager:
         self._connection.commit()
 
     def all(self):
-        Actor_cursor = self._connection.execute(
+        actor_cursor = self._connection.execute(
             "SELECT id, first_name, last_name"
             " FROM Actor")
-        return [Actor(*row) for row in Actor_cursor]
+        return [Actor(*row) for row in actor_cursor]
 
     def update(self, id_to_update, first_name, last_name):
         self._connection.execute(f"UPDATE {self.table_name} "
