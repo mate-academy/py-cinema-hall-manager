@@ -22,12 +22,12 @@ class ActorManager:
         )
         return [Actor(*row) for row in actor_cursor]
 
-    def update(self, id, new_first_name, new_last_name):
+    def update(self, id_, new_first_name, new_last_name):
         self._connection.execute(
             f"UPDATE {self._table_name} "
             "SET first_name = ?, last_name = ? "
             "WHERE id = ?",
-            (new_first_name, new_last_name, id)
+            (new_first_name, new_last_name, id_)
         )
         self._connection.commit()
 
