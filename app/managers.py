@@ -10,14 +10,15 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str):
         self._con.execute(
-            f"INSERT INTO {self.table_name}(first_name, last_name) VALUES (?, ?)", 
+            f"INSERT INTO {self.table_name}(first_name, last_name)"
+            "VALUES (?, ?)", 
             (first_name, last_name)
         )
         self._con.commit()
 
     def all(self):
         actor_cursor = self._con.execute(
-            f"SELECT * FROM actors"
+            f"SELECT * FROM {self.table_name}"
         )
 
         return [Actor(*row) for row in actor_cursor]
