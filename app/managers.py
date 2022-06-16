@@ -1,6 +1,7 @@
 import sqlite3
 from models import Actor
 
+
 class ActorManager:
     def __init__(self):
         self._connection = sqlite3.connect("cinema.sqlite")
@@ -15,7 +16,8 @@ class ActorManager:
 
     def create(self, first_name, last_name):
         self._connection.execute(
-            f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self.table_name} (first_name, last_name) "
+            f"VALUES (?, ?)",
             (first_name, last_name,)
         )
         self._connection.commit()
