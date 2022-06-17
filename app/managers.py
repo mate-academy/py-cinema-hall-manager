@@ -28,8 +28,8 @@ class ActorManager:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ?"
-            f"WHERE id = {id_for_updating}",
-            (first_name_, last_name_)
+            f"WHERE id = ?",
+            (first_name_, last_name_, id_for_updating)
         )
         self._connection.commit()
 
