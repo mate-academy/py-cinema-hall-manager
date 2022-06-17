@@ -5,7 +5,7 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self):
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema.db3")
         self._table_name = 'actor'
 
     def create(self, first_name: str, last_name: str):
@@ -17,10 +17,10 @@ class ActorManager:
         self._connection.commit()
 
     def all(self):
-        cars_cursor = self._connection.execute(
+        actors_cursor = self._connection.execute(
             f"SELECT * FROM {self._table_name}"
         )
-        return [Actor(*car) for car in cars_cursor]
+        return [Actor(*actor) for actor in actors_cursor]
 
     def update(self, id_to_update: int, first_name: str, last_name: str):
         self._connection.execute(
