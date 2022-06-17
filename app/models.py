@@ -7,4 +7,3 @@ class Actor:
     last_name: str
 
 
-
