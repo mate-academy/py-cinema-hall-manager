@@ -7,22 +7,21 @@ class ActorManager:
         self.table_name = 'actor'
 
 
-    def create(self, first_name_, last_name_):
+    def create(self, first_name, last_name):
         self._connection.execute(f"INSERT INTO {self.table_name} (first_name, last_name) "
                                  f"VALUES (?,?)",
-                                 (first_name_, last_name_))
+                                 (first_name, last_name))
         self._connection.commit()
 
     def all(self):
         cinema_data = self._connection.execute(f"SELECT * FROM {self.table_name}")
-        print('cinema_data', cinema_data)
         return [Actor(*row) for row in cinema_data]
 
-    def update(self, first_name_:str, last_name_:str, id_to_update:int, ):
+    def update(self, first_name:str, last_name:str, id_to_update:int, ):
         self._connection.execute(
             f"UPDATE {self.table_name}"
             " SET first_name = ?, last_name=?"
-            " WHERE id=?", (last_name_, first_name_, id_to_update))
+            " WHERE id=?", (last_name, first_name, id_to_update))
 
         self._connection.commit()
 
@@ -31,7 +30,3 @@ class ActorManager:
                                  f" WHERE id = ?", (id_to_delete,))
         self._connection.commit()
 
-
-if __name__ == '__main__':
-    manager = ActorManager()
-    manager.delete(2)
