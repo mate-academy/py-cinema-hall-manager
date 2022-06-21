@@ -7,10 +7,10 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
-    def create(self, first_name_: str, last_name_: str):
+    def create(self, first_name: str, last_name: str):
         self._connection.execute(
             f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?) ",
-            (first_name_, last_name_)
+            (first_name, last_name)
         )
         self._connection.commit()
 
