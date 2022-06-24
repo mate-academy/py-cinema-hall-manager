@@ -1,6 +1,6 @@
 import sqlite3
 
-from app.models import Actors
+from app.models import Actor
 
 
 class ActorManager:
@@ -21,7 +21,7 @@ class ActorManager:
             "SELECT id, first_name, last_name "
             f"FROM {self.table_name}"
         )
-        return [Actors(*row) for row in actors_cursor]
+        return [Actor(*row) for row in actors_cursor]
 
     def update(
             self,
