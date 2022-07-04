@@ -41,4 +41,3 @@ class ActorManager:
             (id_to_delete,)
         )
         self.connection.commit()
-
