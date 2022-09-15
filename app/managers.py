@@ -11,7 +11,6 @@ class ActorManager:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
-        print([Actor(*row) for row in actors_cursor])
         return [Actor(*row) for row in actors_cursor]
 
     def create(self, first_name: str, last_name: str):
