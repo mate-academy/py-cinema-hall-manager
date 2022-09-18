@@ -1,45 +1,45 @@
 import sqlite3
 
-import models
+from models import Actor
 
 
 class ActorManager:
     def __init__(self):
-        self._table_name = "actors"
-        self.manager = sqlite3.connect("cinema.db3")
+        self.table_name = "actors"
+        self._connection = sqlite3.connect("cinema.db3")
 
     def create(self, first_name, last_name):
-        self.manager.execute(
-            f"INSERT INTO {self._table_name} "
+        self._connection.execute(
+            f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) VALUES(?, ?)",
             (first_name, last_name)
         )
 
-        self.manager.commit()
+        self._connection.commit()
 
     def all(self):
-        manager_cursor = self.manager.execute(
+        manager_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name "
-            f"FROM {self._table_name}"
+            f"FROM {self.table_name}"
         )
 
-        return [models.Actor(*row) for row in manager_cursor]
+        return [Actor(*row) for row in manager_cursor]
 
     def update(self, id_to_update, new_first_name, new_last_name):
-        self.manager.execute(
-            f"UPDATE {self._table_name} "
+        self._connection.execute(
+            f"UPDATE {self.table_name} "
             f"SET first_name = ?, last_name = ? "
             f"WHERE id = ?",
             (new_first_name, new_last_name, id_to_update)
         )
 
-        self.manager.commit()
+        self._connection.commit()
 
     def delete(self, id_to_delete):
-        self.manager.execute(
-            f"DELETE FROM {self._table_name} "
+        self._connection.execute(
+            f"DELETE FROM {self.table_name} "
             f"WHERE id = ?",
             (id_to_delete, )
         )
 
-        self.manager.commit()
+        self._connection.commit()
