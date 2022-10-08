@@ -26,7 +26,8 @@ class ActorManager:
                first_name: str,
                last_name: str) -> None:
         self._connection.execute(
-            f"UPDATE {self.table_name} SET first_name = ?, last_name = ? "
+            f"UPDATE {self.table_name} "
+            f"SET first_name = ?, last_name = ? "
             f"WHERE id = ?",
             (first_name, last_name, id_to_update,)
         )
@@ -34,7 +35,8 @@ class ActorManager:
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} WHERE id = ?",
+            f"DELETE FROM {self.table_name} "
+            f"WHERE id = ?",
             (id_to_delete,)
         )
         self._connection.commit()
