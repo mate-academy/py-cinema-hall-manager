@@ -8,7 +8,7 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         cursor_with_actors = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
