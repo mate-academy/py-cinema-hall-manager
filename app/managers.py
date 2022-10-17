@@ -8,11 +8,11 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db3")
         self._table_name = "actors"
 
-    def create(self, first_name: str, last_name: str) -> None:
+    def create(self, create_first_name: str, create_last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self._table_name} "
             f"(first_name,last_name) VALUES (?, ?)",
-            (first_name, last_name)
+            (create_first_name, create_last_name)
         )
         self._connection.commit()
 
@@ -22,22 +22,22 @@ class ActorManager:
         )
         return [Actor(*row) for row in actors_rows]
 
-    def update(self, id_upd: int,
-               f_name_upd: str,
-               l_name_upd: str) -> None:
+    def update(self, id_actor_update: int,
+               first_name_update: str,
+               last_name_update: str) -> None:
 
         self._connection.execute(
             f"UPDATE {self._table_name} "
             "SET first_name = ?, last_name = ?"
             "WHERE id = ?",
-            (f_name_upd, l_name_upd, id_upd)
+            (first_name_update, last_name_update, id_actor_update)
         )
         self._connection.commit()
 
-    def delete(self, id_del: int) -> None:
+    def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
             f"DELETE FROM {self._table_name} "
             "WHERE id = ?",
-            (id_del,)
+            (id_to_delete,)
         )
         self._connection.commit()
