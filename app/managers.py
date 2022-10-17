@@ -22,7 +22,6 @@ class ActorManager:
             "SELECT * "
             f"FROM {self._table_name}"
         )
-        print(actors_cursor)
 
         return [Actor(*row) for row in actors_cursor]
 
