@@ -1,5 +1,7 @@
 import sqlite3
 
+from models import Actor
+
 
 class ActorManager:
 
@@ -14,8 +16,8 @@ class ActorManager:
         self._connection.commit()
 
     def all(self) -> list:
-        actors = self._connection.execute(f"SELECT * FROM {self._table}")
-        result_list = [str(actor) for actor in actors]
+        actor_line = self._connection.execute(f"SELECT * FROM {self._table}")
+        result_list = [Actor(*filed) for filed in actor_line]
         return result_list
 
     def update(self,
