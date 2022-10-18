@@ -37,6 +37,7 @@ class ActorManager:
             "WHERE id = (?)",
             (new_name, new_surname, id_to_update)
         )
+        self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
