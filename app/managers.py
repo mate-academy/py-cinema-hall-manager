@@ -29,6 +29,7 @@ class ActorManager:
             f"where id = ?;",
             (first_name, last_name, id_)
         )
+        self._connection.commit()
 
     def delete(self, id_: int) -> None:
         self._connection.execute(
