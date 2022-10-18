@@ -1,16 +1,20 @@
 import sqlite3
 
+from typing import List
+
+from app.models import Actor
+
 
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
 
-    def all(self) -> list:
+    def all(self) -> List[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
-        return actors_cursor.fetchall()
+        return [Actor(*actor) for actor in actors_cursor]
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
