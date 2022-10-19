@@ -16,9 +16,8 @@ class ActorManager:
         self._connection.commit()
 
     def all(self) -> list:
-        actor_line = self._connection.execute(f"SELECT * FROM {self._table}")
-        result_list = [Actor(*filed) for filed in actor_line]
-        return result_list
+        actors = self._connection.execute(f"SELECT * FROM {self._table}")
+        return [Actor(*actors_data) for actors_data in actors]
 
     def update(self,
                id_actor: int,
