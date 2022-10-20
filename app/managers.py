@@ -5,15 +5,15 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("../cinema")
+        self._connection = sqlite3.connect("../cinema.sqlite3")
         self.table_name = "actor"
 
     def all(self) -> list:
-        select_all = self._connection.execute(
+        actors_cursor = self._connection.execute(
             f"SELECT * "
             f"FROM {self.table_name}"
         )
-        return [Actor(*row) for row in select_all]
+        return [Actor(*row) for row in actors_cursor]
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
