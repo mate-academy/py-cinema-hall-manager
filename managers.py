@@ -18,10 +18,12 @@ class ActorManager:
 
     def all(self) -> list:
         actors_data = self._connection.execute(f"SELECT id, first_name,"
-                                               f" last_name FROM {self.table_name}")
+                                               f" last_name FROM "
+                                               f"{self.table_name}")
         return [Actor(*row) for row in actors_data]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str) -> None:
+    def update(self, id_to_update: int, new_first_name: str,
+               new_last_name: str) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name = ?,"
