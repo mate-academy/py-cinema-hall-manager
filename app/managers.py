@@ -1,0 +1,42 @@
+import sqlite3
+
+from models import Actor
+
+
+class ActorManager:
+    def __init__(self) -> None:
+        self._connection = sqlite3.connect("cinema.db3")
+        self.table_name = "actors"
+
+    def create(self, first_name: str, last_name: str) -> None:
+        self._connection.execute(
+            f"INSERT INTO {self.table_name}"
+            f" (first_name, last_name) VALUES (?, ?)",
+            (first_name, last_name)
+        )
+        self._connection.commit()
+
+    def all(self) -> list:
+        actors_list = self._connection.execute(
+            f"SELECT * FROM {self.table_name}"
+        )
+
+        return [Actor(*row) for row in actors_list]
+
+    def update(self, id_actor: int, new_name: str, new_last_name: str) -> None:
+        self._connection.execute(
+            f"UPDATE {self.table_name}"
+            f" SET first_name = ? AND last_name = ?"
+            f"WHERE id = ?",
+            (new_name, new_last_name, id_actor)
+        )
+
+        self._connection.commit()
+
+    def delete(self, id_to_delete: int) -> None:
+        self._connection.execute(
+            f"DELETE FROM {self.table_name} "
+            f"WHERE id = ?",
+            (id_to_delete,)
+        )
+        self._connection.commit()
