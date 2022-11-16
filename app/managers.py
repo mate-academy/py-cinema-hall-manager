@@ -4,7 +4,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self.table_name = 'actors'
+        self.table_name = "actors"
         self._connection = sqlite3.connect("cinema.db3")
 
     def create(self, first_name: str, last_name: str) -> None:
