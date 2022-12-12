@@ -44,4 +44,3 @@ class ActorManager:
             (id_to_delete,)
         )
         self.base_table.commit()
-
