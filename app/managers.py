@@ -4,7 +4,7 @@ from models import Actor
 
 
 class ActorManager:
-    def __init__(self) ->None:
+    def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema")
 
     def all(self) -> list:
@@ -12,7 +12,6 @@ class ActorManager:
             "SELECT id, first_name, last_name FROM actors"
         )
         return [Actor(*row) for row in actor_data_cursor]
-
 
     def create(
             self,
