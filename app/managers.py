@@ -4,8 +4,8 @@ from app.models import Actor
 
 
 class ActorManager:
-    def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.db3")
+    def __init__(self, connection: sqlite3 = sqlite3.connect("cinema.db3")) -> None:
+        self._connection = connection
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -15,9 +15,9 @@ class ActorManager:
             (first_name, last_name))
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name "
+            f"SELECT * "
             f"FROM {self.table_name}")
         return [Actor(*row) for row in actors_cursor]
 
