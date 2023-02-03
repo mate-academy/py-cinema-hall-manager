@@ -7,7 +7,8 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.db3")
+        self._db_name = "cinema.db3"
+        self._connection = sqlite3.connect(self._db_name)
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -20,7 +21,7 @@ class ActorManager:
 
     def all(self) -> List[Actor]:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name}"
+            f"SELECT * FROM {self.table_name}"
         )
         return [Actor(*row) for row in actors_cursor]
 
@@ -43,3 +44,6 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
+
+    def close_connection(self) -> None:
+        self._connection.close()
