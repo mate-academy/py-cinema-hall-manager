@@ -1,5 +1,6 @@
 import sqlite3
 from models import Actor
+from typing import List
 
 
 class ActorManager:
@@ -15,7 +16,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> List(Actor):
         actor_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name FROM {self.table_name}"
         )
@@ -42,11 +43,3 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
-
-
-if __name__ == "__main__":
-    acto = ActorManager()
-#    acto.create("Tolya", "Pilipey")
-#    acto.update(1, "Misha", "Pilipey")
-    acto.delete(3)
-    print(acto.all())
