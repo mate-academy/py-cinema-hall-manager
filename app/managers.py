@@ -1,11 +1,12 @@
 import sqlite3
+from typing import List
 
 from models import Actor
 
 
 class ActorManager:
-    def __init__(self):
-        self._connection = sqlite3.connect('cinema')
+    def __init__(self) -> None:
+        self._connection = sqlite3.connect("cinema")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -16,7 +17,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self):
+    def all(self) -> List[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name "
             f"FROM {self.table_name}"
