@@ -1,5 +1,5 @@
-from app.models import Actor
 import sqlite3
+from app.models import Actor
 
 
 class ActorManager:
@@ -46,3 +46,6 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
+
+    def close_connection(self) -> None:
+        self._connection.close()
