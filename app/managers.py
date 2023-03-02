@@ -20,7 +20,6 @@ class ActorManager:
             f"SELECT *"
             f"FROM {self.table_name}"
         )
-        print("actors_cursor", actors_cursor)
         return [Actor(*row) for row in actors_cursor]
 
     def update(
