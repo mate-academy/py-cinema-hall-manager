@@ -41,9 +41,3 @@ class ActorManager:
             f"WHERE id = ?",
             (id_to_delete,)
         )
-
-
-if __name__ == "__main__":
-    manager = ActorManager()
-    manager.delete(1)
-    print(manager.all())
