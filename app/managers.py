@@ -5,7 +5,7 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sqlite")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def all(self) -> list:
@@ -35,7 +35,6 @@ class ActorManager:
             " SET (first_name, last_name) = (?, ?) "
             "WHERE id = ?",
             (first_name, last_name, id_to_update)
-
         )
         self._connection.commit()
 
