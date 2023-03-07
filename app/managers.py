@@ -5,15 +5,16 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sqlite")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def all(self) -> list:
-        return [
+        actor = [
             Actor(*actor)
             for actor
             in self._connection.execute(f"SELECT * FROM {self.table_name}")
         ]
+        return actor
 
     def create(
             self,
