@@ -1,13 +1,17 @@
+import os.path
 from models import Actor
 from managers import ActorManager
+from managers import db_path
 
 if __name__ == "__main__":
-    Actor.objects = ActorManager()
+    Actor = ActorManager()
 
-    Actor.objects.create(first_name_="Emma", last_name_="Watson")
-    Actor.objects.create(first_name_="Daniel", last_name_="Radclife")
-    # print(Actor.objects.all())
+    # Actor.create(first_name_="Emma", last_name_="Watson")
+    # Actor.create(first_name_="Daniel", last_name_="Radclife")
     # Actor.objects.update(2, "Daniel", "Radcliffe")
-    # print(Actor.objects.all())
     # Actor.objects.delete(1)
     # print(Actor.objects.all())
+
+    print(db_path)
+
+
