@@ -22,7 +22,7 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} (first_name, last_name) "
-            f"VALUES (?, ?)", (first_name, last_name)
+            "VALUES (?, ?)", (first_name, last_name)
         )
         self._connection.commit()
 
@@ -47,3 +47,4 @@ class ActorManager:
             f"DELETE FROM {self.table_name} WHERE id = ?",
             (id_to_delete,)
         )
+        self._connection.commit()
