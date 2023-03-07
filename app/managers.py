@@ -1,5 +1,6 @@
 import sqlite3
-from models import Actor
+
+from app.models import Actor
 
 
 class ActorManager:
@@ -30,11 +31,10 @@ class ActorManager:
             id_to_update: int,
             first_name: str,
             last_name: str,
-
     ) -> None:
         self._connected.execute(
             f"UPDATE {self.table_name}"
-            f" SET first_name = ?, last_name = ?"
+            f"SET first_name = ?, last_name = ?"
             f"WHERE id = ?",
             (first_name, last_name, id_to_update)
         )
