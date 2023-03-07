@@ -5,13 +5,13 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema_db")
+        self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name}"
-            " (first_name, last_name) VALUES(?, ?)",
+            f"(first_name, last_name) VALUES(?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
