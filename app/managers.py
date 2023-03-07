@@ -6,7 +6,7 @@ from models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("Actor_db.sqlite")
-        self.table_name = "actor"
+        self.table_name = "actors"
 
     def all(self) -> any:
         actor_cursor = self._connection.execute(
