@@ -1,16 +1,12 @@
 from __future__ import annotations
-import os.path
 import sqlite3
 from models import Actor
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, "cinema.db")
 
 
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            db_path)
+            "cinema.db3")
         self.table_name = "actors"
 
     def create(self, first_name_: str, last_name_: str) -> None:
