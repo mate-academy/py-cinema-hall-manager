@@ -1,10 +1,10 @@
-import sqlite3
 from models import Actor
+import sqlite3
 
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
