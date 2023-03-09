@@ -46,4 +46,3 @@ class ActorManager:
 
 if __name__ == "__main__":
     manager = ActorManager()
-
