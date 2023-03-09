@@ -5,12 +5,13 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def all(self) -> list:
         actors_data_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name}"
+            f"SELECT id, first_name, last_name "
+            f"FROM {self.table_name}"
         )
 
         return [Actor(*row) for row in actors_data_cursor]
