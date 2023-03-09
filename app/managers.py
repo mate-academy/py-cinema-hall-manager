@@ -13,7 +13,8 @@ class ActorManager:
     def create(self, first_name_: str, last_name_: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name}"
-            " (first_name, last_name) VALUES (?, ?)",
+            " (first_name, last_name) "
+            "VALUES (?, ?)",
             (first_name_, last_name_)
         )
         self._connection.commit()
