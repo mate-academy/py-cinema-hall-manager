@@ -44,3 +44,6 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
+
+    def close(self) -> None:
+        self._connection.close()
