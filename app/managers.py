@@ -10,13 +10,14 @@ class ActorManager:
         self.cursor = self.connect.cursor()
 
     def create(self, first_name: str, last_name: str) -> None:
-        self.cursor.execute("INSERT INTO actors (first_name, last_name)"
-                            " VALUES (?, ?)",
+        self.cursor.execute("INSERT INTO actors (first_name, last_name) "
+                            "VALUES (?, ?)",
                             (first_name, last_name))
         self.connect.commit()
 
     def all(self) -> List[Actor]:
-        self.cursor.execute("SELECT * FROM actors")
+        self.cursor.execute("SELECT * "
+                            "FROM actors")
         actors = []
         for row in self.cursor.fetchall():
             actor = Actor(*row)
@@ -24,11 +25,12 @@ class ActorManager:
         return actors
 
     def update(self, id: int, first_name: str, last_name: str) -> None:
-        self.cursor.execute("UPDATE actors SET first_name = ?,"
-                            " last_name = ? WHERE id = ?",
+        self.cursor.execute("UPDATE actors SET first_name = ?, last_name = ? "
+                            "WHERE id = ?",
                             (first_name, last_name, id))
         self.connect.commit()
 
     def delete(self, id: int) -> None:
-        self.cursor.execute("DELETE FROM actors WHERE id = ?", (id,))
+        self.cursor.execute("DELETE FROM actors "
+                            "WHERE id = ?", (id,))
         self.connect.commit()
