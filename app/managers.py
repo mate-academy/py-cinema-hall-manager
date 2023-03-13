@@ -1,6 +1,6 @@
 from __future__ import annotations
-import sqlite3
 from models import Actor
+import sqlite3
 
 
 class ActorManager:
@@ -10,12 +10,12 @@ class ActorManager:
         )
         self.table_name = "actors"
 
-    def create(self, first_name_: str, last_name_: str) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name}"
             " (first_name, last_name) "
             "VALUES (?, ?)",
-            (first_name_, last_name_)
+            (first_name, last_name)
         )
         self._connection.commit()
 
