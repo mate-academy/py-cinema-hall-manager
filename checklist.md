@@ -1,4 +1,4 @@
-# Сheck Your Code Against the Following Points
+git checkout HEAD^ -- /path/to/file# Сheck Your Code Against the Following Points
 
 ## Don't Push db files
 
