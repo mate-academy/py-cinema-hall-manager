@@ -25,7 +25,8 @@ class ActorManager:
         return actors
 
     def update(self, id: int, first_name: str, last_name: str) -> None:
-        self.cursor.execute("UPDATE actors SET first_name = ?, last_name = ? "
+        self.cursor.execute("UPDATE actors "
+                            "SET first_name = ?, last_name = ? "
                             "WHERE id = ?",
                             (first_name, last_name, id))
         self.connect.commit()
