@@ -1,6 +1,6 @@
 from __future__ import annotations
-from models import Actor
 import sqlite3
+from models import Actor
 
 
 class ActorManager:
