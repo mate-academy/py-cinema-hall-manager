@@ -5,7 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sqlite")
+        self._connection = sqlite3.connect("cinema.sqlite3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -25,7 +25,8 @@ class ActorManager:
         return [Actor(*row) for row in actors_data_cursor]
 
     def update(
-            self, actor_id: int,
+            self,
+            actor_id: int,
             new_first_name: str,
             new_last_name: str
     ) -> None:
