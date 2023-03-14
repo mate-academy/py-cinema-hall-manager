@@ -5,12 +5,12 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sqlite3")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} ",
+            f"INSERT INTO {self.table_name} "
             "(first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
@@ -18,7 +18,7 @@ class ActorManager:
 
     def all(self) -> list:
         actors_data_cursor = self._connection.execute(
-            "SELECT * ",
+            "SELECT * "
             f"FROM {self.table_name}"
         )
 
@@ -40,8 +40,8 @@ class ActorManager:
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
-            "DELETE ",
-            "FROM {self.table_name} "
+            "DELETE "
+            f"FROM {self.table_name} "
             "WHERE id = ?",
             (id_to_delete,)
         )

@@ -1,4 +1,4 @@
-cinema.sqlite
+
 .idea/
 .vscode/
 *.iml
@@ -8,3 +8,4 @@ venv/
 .pytest_cache/
 **__pycache__/
 **db.sqlite3
+/app/cinema.db3
