@@ -5,7 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sqlite")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -38,6 +38,7 @@ class ActorManager:
         self._connection.execute(
             f"DELETE "
             f"FROM {self.table_name} "
-            "WHERE id = ?", (id_to_delete,)
+            "WHERE id = ?",
+            (id_to_delete,)
         )
         self._connection.commit()
