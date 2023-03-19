@@ -10,9 +10,9 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actor_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table}"
+            f"SELECT * FROM {self.table}"
         )
-        return [Actor(actor[0], actor[1], actor[2]) for actor in actor_cursor]
+        return [Actor(*actor) for actor in actor_cursor]
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
