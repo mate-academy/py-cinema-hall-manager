@@ -39,9 +39,3 @@ class ActorManager:
             f"DELETE FROM {self.table_name} WHERE id = ?", (id_to_delete,)
         )
         self._connection.commit()
-
-
-if __name__ == "__main__":
-    manager = ActorManager()
-    manager.create(first_name="Tom", last_name="Cruise")
-    print(manager.all())
