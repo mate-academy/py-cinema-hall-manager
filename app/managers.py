@@ -9,8 +9,8 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema")
 
     def all(self) -> list:
-        data = self._connection.execute("SELECT id, first_name, "
-                                        f"last_name FROM {self.table_name}")
+        data = self._connection.execute("SELECT id, first_name, last_name "
+                                        f"FROM {self.table_name}")
         return [Actor(*row) for row in data]
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -24,7 +24,7 @@ class ActorManager:
                                  "SET first_name = ?"
                                  "AND last_name = ?"
                                  "WHERE id = ?",
-                                 (new_first, new_last, new_id, ))
+                                 (new_first, new_last, new_id))
         self._connection.commit()
 
     def delete(self, id_to_del: int) -> None:
