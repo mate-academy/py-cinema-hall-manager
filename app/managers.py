@@ -9,8 +9,7 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema")
 
     def all(self) -> list:
-        data = self._connection.execute("SELECT id, first_name, last_name "
-                                        f"FROM {self.table_name}")
+        data = self._connection.execute(f"SELECT * FROM {self.table_name}")
         return [Actor(*row) for row in data]
 
     def create(self, first_name: str, last_name: str) -> None:
