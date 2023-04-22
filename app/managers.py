@@ -10,12 +10,12 @@ class ActorManager:
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name}"
-            " (first_name, last_name) VALUES (?)",
+            " (first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT *  FROM {self.table_name}"
         )
