@@ -20,9 +20,9 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         literary_format_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name}"
+            f"SELECT * FROM {self.table_name}"
         )
         return [Actor(*row) for row in literary_format_cursor]
 
