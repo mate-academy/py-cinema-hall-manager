@@ -23,7 +23,8 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> List:
+    def all(self) -> List[Actor]:
+
         actors_data = self._connection.execute("SELECT * FROM actors")
         return [Actor(*row) for row in actors_data]
 
