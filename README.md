@@ -23,7 +23,8 @@ The manager should have the following methods:
 with given properties.
 - `all` - a method that returns a list of `Actor` instances from DB
 - `update` - a method that updates properties for entry with given `id`
-- `delete` - a method that deletes entry with given `id` from DB
+- `
+- ` - a method that deletes entry with given `id` from DB
 
 #### 4. Test
 Test different methods in the `main.py` module.
