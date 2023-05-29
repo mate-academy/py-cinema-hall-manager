@@ -30,16 +30,16 @@ class ActorManager:
         update_query = f"UPDATE {self.table_name} SET"
         params = []
         if new_first_name:
-            update_query += f" first_name = ?,"
+            update_query += " first_name = ?,"
             params.append(new_first_name)
 
         if new_last_name:
-            update_query += f" last_name = ?,"
+            update_query += " last_name = ?,"
             params.append(new_last_name)
 
-        update_query = update_query.rstrip(',')
+        update_query = update_query.rstrip(",")
 
-        update_query += f" WHERE id = ?;"
+        update_query += " WHERE id = ?;"
         params.append(id_to_update)
         self._connection.execute(update_query, params)
         self._connection.commit()
@@ -50,7 +50,5 @@ class ActorManager:
         self._connection.commit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     manager = ActorManager()
-    print(manager.all())
-
