@@ -42,4 +42,4 @@ class ActorManager:
             "WHERE id = ?",
             (id_to_delete,)
         )
-        self._connection.commit().sdsd
+        self._connection.commit()
