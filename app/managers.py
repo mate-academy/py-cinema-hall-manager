@@ -16,7 +16,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def read(self) -> list:
+    def read(self) -> list[Actor]:
         cinema_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}")
 
