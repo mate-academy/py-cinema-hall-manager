@@ -33,8 +33,3 @@ class ActorManager:
                f"WHERE id = ?")
         self._connection.execute(sql, (id_to_del, ))
         self._connection.commit()
-
-
-if __name__ == "__main__":
-    actor = ActorManager()
-    print(actor.all())
