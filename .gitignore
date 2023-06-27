@@ -6,5 +6,6 @@
 venv/
 .pytest_cache/
 **__pycache__/
-**cinema.db3
 **db.sqlite3
+**cinema.db3
+.gitignore
