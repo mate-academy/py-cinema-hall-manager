@@ -3,10 +3,14 @@ from app.models import Actor
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self._connection = sqlite3.connect("../cinema.sqlite")
 
-    def create(self, first_name, last_name):
+    def create(
+            self,
+            first_name: str,
+            last_name: str
+    ) -> None:
         self._connection.execute(
             "INSERT INTO actors (first_name, last_name) "
             "VALUES (?, ?)",
@@ -14,13 +18,17 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self):
+    def all(self) -> list[Actor]:
         all_content_cursor = self._connection.execute(
             "SELECT * FROM actors"
         )
         return [Actor(*row) for row in all_content_cursor]
 
-    def update(self, id_, new_first_name, new_last_name):
+    def update(
+            self, id_: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
         self._connection.execute(
             "UPDATE actors SET first_name = ?, last_name = ? "
             "WHERE id = ?",
@@ -28,7 +36,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def delete(self, id_):
+    def delete(self, id_: int) -> None:
         self._connection.execute(
             "DELETE FROM actors "
             "WHERE id = ?",
