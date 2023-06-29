@@ -1,5 +1,4 @@
 import sqlite3
-from typing import Any
 
 from app.models import Actor
 
@@ -17,7 +16,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> Any:
+    def all(self) -> list[Actor]:
         actor_manager_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
