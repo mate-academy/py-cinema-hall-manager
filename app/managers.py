@@ -18,7 +18,7 @@ class ActorManager:
 
     def all(self) -> list:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name "
+            f"SELECT * "
             f"FROM {self.table_name}"
         )
 
