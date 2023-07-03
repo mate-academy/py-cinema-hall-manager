@@ -6,7 +6,7 @@ from models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            "D:/mate/py-actor-manager/cinema.sqlite"
+            "cinema.sqlite"
         )
         self.table_name = "actors"
         self.cursor = self._connection.cursor()
@@ -26,12 +26,15 @@ class ActorManager:
         )
         return [Actor(*row) for row in self.cursor]
 
-    def update(self, id_: int, first_name: str, last_name: str) -> None:
+    def update(self,
+               id_to_update: int,
+               first_name: str,
+               last_name: str) -> None:
         self.cursor.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name = ?, last_name = ? "
             f"WHERE id = ?",
-            (first_name, last_name, id_)
+            (first_name, last_name, id_to_update)
         )
         self._connection.commit()
 
