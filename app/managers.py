@@ -23,23 +23,18 @@ class ActorManager:
 
         return [Actor(*row) for row in actors_cursor]
 
-    def update(self, id_: int, first_name: str, last_name: str) -> None:
+    def update(self, actor_id: int, first_name: str, last_name: str) -> None:
         self._connection.execute(
             (f"UPDATE {self.table_name} "
              "SET first_name = ?, last_name = ? "
              "WHERE id = ?"),
-            (first_name, last_name, id_)
+            (first_name, last_name, actor_id)
         )
         self._connection.commit()
 
-    def delete(self, id_: int) -> None:
+    def delete(self, actor_id: int) -> None:
         self._connection.execute(
             f"DELETE FROM {self.table_name} WHERE id = ?",
-            (id_,)
+            (actor_id,)
         )
         self._connection.commit()
-
-
-if __name__ == "__main__":
-    manager = ActorManager()
-    print(manager.all())
