@@ -1,4 +1,5 @@
 import sqlite3
+
 from models import Actor
 
 
@@ -29,10 +30,3 @@ class ActorManager:
                                 f"WHERE id = ?",
                                 (id,))
         self.connection.commit()
-
-
-if __name__ == "__main__":
-    manager = ActorManager()
-    print(manager.all())
-    manager.delete(4)
-    print(manager.all())
