@@ -9,15 +9,14 @@ class ActorManager:
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
-            self.connection.execute(f"INSERT INTO {self.table_name} "
-                                    f"(first_name, last_name) VALUES (?, ?)",
-                                    (first_name, last_name))
-            self.connection.commit()
+        self.connection.execute(f"INSERT INTO {self.table_name} "
+                                f"(first_name, last_name) VALUES (?, ?)",
+                                (first_name, last_name))
+        self.connection.commit()
 
     def all(self) -> list:
         actors = self.connection.execute(f"SELECT * FROM {self.table_name}")
         return [Actor(*row) for row in actors]
-
 
     def update(self, id: int, name: str, surname: str) -> None:
         self.connection.execute(f"UPDATE {self.table_name} "
