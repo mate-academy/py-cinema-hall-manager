@@ -2,6 +2,8 @@ import sqlite3
 
 from models import Actor
 
+from typing import List
+
 
 class ActorManager:
     def __init__(self) -> None:
@@ -14,7 +16,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> List[Actor]:
         actors_data = self._connection.execute(
             "SELECT * FROM actors"
         )
