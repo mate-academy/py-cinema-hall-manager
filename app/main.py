@@ -10,7 +10,8 @@ if __name__ == "__main__":
     Actor.objects.update(
         id_to_update=2,
         new_first_name="Daniel",
-        new_last_name="Radcliffe")
+        new_last_name="Radcliffe"
+    )
     print(Actor.objects.all())
     Actor.objects.delete(id_to_delete=1)
     print(Actor.objects.all())
