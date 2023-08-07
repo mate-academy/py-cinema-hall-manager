@@ -9,7 +9,7 @@ class ActorManager:
 
     def all(self) -> None:
         actors_cursor = self._connection.execute(
-            "SELECT id, first_name, last_name FROM actors"
+            "SELECT * FROM actors"
         )
 
         return [Actor(*line) for line in actors_cursor]
