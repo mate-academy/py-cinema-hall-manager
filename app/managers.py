@@ -18,9 +18,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name}"
+            f"SELECT * FROM {self.table_name}"
         )
-
         return [Actor(*values) for values in actors_cursor]
 
     def update(self,
