@@ -6,7 +6,7 @@ from app.models import Actor
 class ActorManager:
     db_name = "cinema.db3"
 
-    def __init__(self, db_name) -> None:
+    def __init__(self, db_name: str) -> None:
         self._connection = sqlite3.connect(db_name)
 
     def all(self) -> None:
