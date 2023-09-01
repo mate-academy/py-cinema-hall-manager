@@ -5,7 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._conection = sqlite3.connect("../cinema")
+        self._conection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def all(self) -> list[Actor]:
@@ -48,12 +48,3 @@ class ActorManager:
             (id_actor, )
         )
         self._conection.commit()
-
-    def print_(self) -> None:
-        print(self._conection)
-
-
-if __name__ == "__main__":
-    am = ActorManager()
-    am.update(1, "Sania", "Sanich ")
-    print(am.print_())
