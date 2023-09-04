@@ -10,8 +10,8 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, second_name) VALUES (?,?)",
+            f"INSERT INTO {self.table_name} (first_name, second_name) "
+            f"VALUES (?,?)",
             (first_name, last_name),
         )
         self._connection.commit()
@@ -32,6 +32,7 @@ class ActorManager:
 
     def delete(self, id: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} WHERE id =?", (id,)
+            f"DELETE FROM {self.table_name} "
+            f"WHERE id =?", (id,)
         )
         self._connection.commit()
