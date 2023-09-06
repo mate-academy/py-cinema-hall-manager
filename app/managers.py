@@ -9,6 +9,16 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
 
+        with self.connection:
+            self.connection.execute(
+                f"CREATE TABLE IF NOT EXISTS {self.table_name}"
+                f"("
+                f"id INTEGER PRIMARY KEY,"
+                f"first_name VARCHAR(63) NOT NULL,"
+                f"last_name VARCHAR(63) NOT NULL"
+                f")"
+            )
+
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} "
