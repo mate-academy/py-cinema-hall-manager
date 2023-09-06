@@ -13,7 +13,7 @@ class ActorManager:
             self._connection.execute(
                 f"CREATE TABLE IF NOT EXISTS {self.table_name} "
                 "("
-                "id INTEGER PRIMARY KEY, "
+                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
                 "first_name VARCHAR(255) NOT NULL, "
                 "last_name VARCHAR(255) NOT NULL"
                 ")"
