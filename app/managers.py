@@ -42,8 +42,3 @@ class ActorManagers:
             "WHERE id = ?", (id_to_delete,)
         )
         self._connection.commit()
-
-
-if __name__ == '__main__':
-    manager = ActorManagers()
-    manager.create("ssss","ssss")
