@@ -9,7 +9,7 @@ class ActorManager:
         self.table_name = "actors"
         self._connection.execute(
             f"CREATE TABLE IF NOT EXISTS {self.table_name} "
-            f"(id INTEGER PRIMARY KEY, first_name VARCHAR(63), last_name TEXT)"
+            f"(id INTEGER PRIMARY KEY, first_name VARCHAR(63), last_name VARCHAR(63))"
         )
         self._connection.commit()
 
