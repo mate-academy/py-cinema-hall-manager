@@ -63,8 +63,3 @@ class ActorManager:
                 "    last_name  TEXT (255) "
                 ")"
             )
-
-
-if __name__ == "__main__":
-    manager = ActorManager()
-    print(manager.all())
