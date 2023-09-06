@@ -6,8 +6,18 @@ from models import Actor
 class ActorManager:
 
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema.sqlite3")
         self.table_name = "actors"
+
+        with self._connection:
+            self._connection.execute(
+                f"CREATE TABLE IF NOT EXISTS {self.table_name} "
+                "("
+                "id INTEGER PRIMARY KEY, "
+                "first_name VARCHAR(255) NOT NULL, "
+                "last_name VARCHAR(255) NOT NULL"
+                ")"
+            )
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
