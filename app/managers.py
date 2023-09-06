@@ -29,7 +29,7 @@ class ActorManager:
     def all(self) -> list[Actor]:
         sql = "SELECT * FROM actors;"
         cursor = self._connection.execute(sql)
-        return [Actor(raw[0], raw[1], raw[2]) for raw in cursor]
+        return [Actor(*raw) for raw in cursor]
 
     def update(
         self, input_id: int, input_first_name: str, input_last_name: str
