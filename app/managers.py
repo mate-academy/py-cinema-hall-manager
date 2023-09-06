@@ -12,9 +12,9 @@ class ActorManager:
             self._connection.execute(
                 f"CREATE TABLE IF NOT EXISTS {self.table_name} "
                 "("
-                "id INTEGER PRIMARY KEY,"
-                " first_name VARCHAR(63) NOT NULL,"
-                " last_name VARCHAR(63) NOT NULL"
+                "id INTEGER PRIMARY KEY, "
+                "first_name VARCHAR(63) NOT NULL, "
+                "last_name VARCHAR(63) NOT NULL"
                 ")"
             )
 
