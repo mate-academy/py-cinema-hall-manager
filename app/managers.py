@@ -8,6 +8,24 @@ class ActorManager:
         self._connection = sqlite3.connect("cinama.db3")
         self.table_name = "actors"
 
+        if not self.table_exists():
+            self.create_table()
+
+    def table_exists(self):
+        cursor = self._connection.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?", (self.table_name,))
+        return cursor.fetchone() is not None
+
+    def create_table(self):
+        cursor = self._connection.cursor()
+        cursor.execute(f"CREATE TABLE {self.table_name} ("
+                       f"id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                       f"first_name varchar(63), "
+                       f"last_name INTEGER)"
+                       )
+
+        self._connection.commit()
+
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} (first_name, last_name)"
@@ -25,7 +43,7 @@ class ActorManager:
         return [Actor(*row) for row in data_cursor]
 
     def update(
-        self, id_to_update: int, first_name_: str, last_name_: str
+        self, first_name_: str, last_name_: str, id_to_update: int
     ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
