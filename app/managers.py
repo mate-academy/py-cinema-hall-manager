@@ -9,7 +9,8 @@ class ActorManager:
         self.table_name = "actors"
         self._connection.execute(
             f"CREATE TABLE IF NOT EXISTS {self.table_name} "
-            f"(id INTEGER PRIMARY KEY, first_name VARCHAR(63), last_name VARCHAR(63))"
+            f"(id INTEGER PRIMARY KEY, "
+            f"first_name VARCHAR(63), last_name VARCHAR(63))"
         )
         self._connection.commit()
 
@@ -24,7 +25,12 @@ class ActorManager:
         actors = self._connection.execute(f"SELECT * FROM {self.table_name}")
         return [Actor(*row) for row in actors]
 
-    def update(self, update_id: int, new_first_name: str, new_last_name: str) -> None:
+    def update(
+        self,
+        update_id: int,
+        new_first_name: str,
+        new_last_name: str
+    ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? "
