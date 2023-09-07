@@ -9,8 +9,8 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
 
-        with self.connection:
-            self.connection.execute(
+        with self._connection:
+            self._connection.execute(
                 f"CREATE TABLE IF NOT EXISTS {self.table_name}"
                 f"("
                 f"id INTEGER PRIMARY KEY,"
