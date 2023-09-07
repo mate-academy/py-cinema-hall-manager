@@ -1,13 +1,12 @@
 import sqlite3
 
-from models import Actor
+from app.models import Actor
 
 
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            "C:/Users/Igor/PycharmProjects/"
-            "django ORM/py-actor-manager/cinema.sqlite"
+            "cinema.sqlite"
         )
         self.table_name = "actors"
 
