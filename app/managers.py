@@ -10,8 +10,8 @@ class ActorManager:
 
         with self._connection:
             self._connection.execute(
-                f"CREATE TABLE {self.table_name}("
-                "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                f"CREATE TABLE {self.table_name}"
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 "first_name VARCHAR(15) NOT NULL,"
                 "last_name VARCHAR(15) NOT NULL);"
             )
@@ -26,7 +26,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actor_cursor: sqlite3.Cursor = self._connection.execute(
-            f"SELECT * FROM {self.table_name};"
+            "SELECT * "
+            f"FROM {self.table_name};"
         )
         return [Actor(*row) for row in actor_cursor]
 
