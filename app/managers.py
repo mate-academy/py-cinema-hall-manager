@@ -25,11 +25,12 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
-        cursor = self._connection.execute(
-            f"SELECT * FROM {self.table_name}"
+    def all(self) -> list[Actor]:
+        actor_cursor = self._connection.execute(
+            f"SELECT * "
+            f"FROM {self.table_name}"
         )
-        return [Actor(*actor) for actor in cursor]
+        return [Actor(*actor) for actor in actor_cursor]
 
     def update(self, first_name: str, last_name: str, actor_id: int) -> None:
         self._connection.execute(
