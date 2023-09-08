@@ -1,5 +1,5 @@
-import sqlite3
 from models import Actor
+import sqlite3
 
 
 class ActorManager:
@@ -17,7 +17,7 @@ class ActorManager:
                 ")"
             )
 
-    def all(self) -> object:
+    def all(self) -> None:
         actor_manager_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name FROM {self._table_name}"
         )
