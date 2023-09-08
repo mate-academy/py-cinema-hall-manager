@@ -23,7 +23,7 @@ class ActorManager:
             (first_name, second_name)
             VALUES (?,?)
             """,
-            (first_name, last_name),
+            (first_name, last_name)
         )
         self._connection.commit()
 
@@ -47,7 +47,7 @@ class ActorManager:
             SET first_name = ?, second_name = ?
             WHERE id = ?
             """,
-            (new_first_name, new_last_name, id_to_update),
+            (new_first_name, new_last_name, id_to_update)
         )
         self._connection.commit()
 
