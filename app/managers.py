@@ -6,7 +6,7 @@ from models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinama.db3")
-        self.table_name = "actors1123123123131231231"
+        self.table_name = "actors"
 
         with self._connection:
             self._connection.execute(
@@ -28,7 +28,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         data_cursor = self._connection.execute(
-            f"SELECT * " f"FROM {self.table_name}"
+            f"SELECT * "
+            f"FROM {self.table_name}"
         )
         return [Actor(*row) for row in data_cursor]
 
@@ -49,7 +50,9 @@ class ActorManager:
     def delete(self, id_to_delete: int) -> None:
         with self._connection:
             self._connection.execute(
-                f"DELETE FROM {self.table_name} " f"WHERE id = ?",
+                f"DELETE "
+                f"FROM {self.table_name} "
+                f"WHERE id = ?",
                 (id_to_delete,),
             )
 
