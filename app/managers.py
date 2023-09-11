@@ -17,7 +17,7 @@ class ActorManager:
                 ")"
             )
 
-    def all(self) -> None:
+    def all(self) -> list[Actor]:
         actor_manager_cursor = self._connection.execute(
             f"SELECT id, first_name, last_name FROM {self._table_name}"
         )
