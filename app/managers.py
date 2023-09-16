@@ -17,7 +17,7 @@ class ActorManager:
         )
         self.connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         acor_manager_cursor = self.connection.execute(
             f"SELECT id, first_name, last_name FROM {self.table_name}"
         )
