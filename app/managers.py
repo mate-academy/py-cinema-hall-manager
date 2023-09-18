@@ -5,10 +5,10 @@ from app.models import Actor
 
 
 class ActorManager:
-    table_name: str = 'actors'
+    table_name: str = "actors"
 
     def __init__(self) -> None:
-        self.connection = sqlite3.connect('../cinema')
+        self.connection = sqlite3.connect("../cinema")
 
     def create(self, first_name: str, last_name: str) -> None:
         sql = (
@@ -22,14 +22,15 @@ class ActorManager:
         cursor = self.connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
-        actors = []
-        for row in cursor:
-            actors.append(Actor(*row))
+        actors = [Actor(*row) for row in cursor]
 
         return actors
 
     def update(self, id: int, first_name: str, last_name: str) -> None:
-        sql = f"UPDATE {self.table_name} SET first_name = ?, last_name = ? WHERE id = ?"
+        sql = (
+            f"UPDATE {self.table_name} "
+            f"SET first_name = ?, last_name = ? WHERE id = ?"
+        )
         self.connection.execute(sql, [first_name, last_name, id])
         self.connection.commit()
 
