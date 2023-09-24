@@ -6,7 +6,7 @@ from app.models import Actor
 class ActorManager:
 
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.db")
+        self._connection = sqlite3.connect("cinema")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -17,7 +17,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         cursor_data = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
