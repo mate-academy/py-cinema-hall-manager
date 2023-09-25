@@ -5,8 +5,19 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema_db")
+        self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
+        self._create_table()
+
+    def _create_table(self) -> None:
+        create_table = f"""
+        CREATE TABLE IF NOT EXISTS {self.table_name} (
+        id INTEGER PRIMARY KEY,
+        first_name TEXT, last_name TEXT
+        );"""
+        cursor = self._connection.cursor()
+        cursor.execute(create_table)
+        self._connection.commit()
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
@@ -17,7 +28,7 @@ class ActorManager:
 
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_data = self._connection.execute("SELECT * FROM actors")
         return [Actor(*row) for row in actors_data]
 
