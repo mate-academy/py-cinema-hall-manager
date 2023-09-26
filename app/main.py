@@ -26,7 +26,7 @@ class TestActorsTable(TestCase):
         assert all(bool_ls) is True
 
     @mock.patch("app.managers.ActorManager.update")
-    def test_update(self, mocked_update: Mock):
+    def test_update(self, mocked_update: Mock) -> None:
         data = self.test_actor_id, *self.test_actor
         self.table.update(*data)
         mocked_update.assert_called_once_with(*data)
