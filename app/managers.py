@@ -3,10 +3,15 @@ from models import Actor
 
 
 class ActorManager:
-
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema")
-        self.table_name = "actors"
+    self._connection = sqlite3.connect("cinema")
+    self._connection.enable_load_extension(True)
+
+    def add_extension(self, extension_path):
+    self._connection.load_extension(extension_path)
+
+    def close_connection(self):
+    self._connection.close()
 
     def all(self) -> list[Actor]:
         cinema_data = self._connection.execute(
