@@ -1,48 +1,46 @@
 import sqlite3
+from typing import List
+
 from models import Actor
 
 
 class ActorManager:
     def __init__(self) -> None:
-    self._connection = sqlite3.connect("cinema")
-    self._connection.enable_load_extension(True)
-
-    def add_extension(self, extension_path):
-    self._connection.load_extension(extension_path)
-
-    def close_connection(self):
-    self._connection.close()
-
-    def all(self) -> list[Actor]:
-        cinema_data = self._connection.execute(
-            f"SELECT * FROM {self.table_name}"
-        )
-
-        return [Actor(*row) for row in cinema_data]
+        self._connection = sqlite3.connect("../cinema.sqlite")
+        self._table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, last_name) "
-            f"VALUES (?, ?)", (first_name, last_name))
-
+            f"INSERT INTO {self._table_name} ("
+            f"first_name, last_name) VALUES (?,?)",
+            (first_name, last_name),
+        )
         self._connection.commit()
 
-    def update(
-            self, id_to_update: int, first_name: str, last_name: str
-    ) -> None:
+    def all(self) -> List[Actor]:
+        actor_cursor = self._connection.execute(
+            f"SELECT * FROM {self._table_name}"
+        )
 
+        return [Actor(*row) for row in actor_cursor]
+
+    def update(
+            self,
+            id_to_update: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
         self._connection.execute(
-            f"UPDATE {self.table_name} "
-            "SET (first_name, last_name) = (?, ?) "
+            f"UPDATE {self._table_name} "
+            "SET first_name = ?, last_name = ? "
             "WHERE id = ?",
-            (first_name, last_name, id_to_update)
+            (new_first_name, new_last_name, id_to_update),
         )
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} "
+            f"DELETE FROM {self._table_name} "
             "WHERE id = ?",
             (id_to_delete,)
         )
