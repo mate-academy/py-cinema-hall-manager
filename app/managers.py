@@ -4,15 +4,17 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connect = sqlite3.connect("cinema.db3")
+        self._connect = sqlite3.connect(
+            "C:/Users/user/Desktop/djiango-orm/cinema"
+        )
         self.table_name = "actors"
 
-    def create(self, first_name_: str, last_name_: str) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connect.execute(
             f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) "
             f"VALUES (?, ?)",
-            (first_name_, last_name_)
+            (first_name, last_name)
         )
         self._connect.commit()
 
