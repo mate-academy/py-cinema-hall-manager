@@ -1,5 +1,6 @@
 import sqlite3
 from models import Actor
+from typing import List
 
 
 class ActorManager:
@@ -18,7 +19,7 @@ class ActorManager:
         )
         self._connect.commit()
 
-    def all(self):
+    def all(self) -> List[Actor]:
         cinema_cursor = self._connect.execute(
             f"SELECT id, first_name, last_name "
             f"FROM {self.table_name}"
@@ -44,8 +45,7 @@ class ActorManager:
 
     def delete(self, id_to_del: int) -> None:
         self._connect.execute(
-            f"DELETE FROM {self.table_name} "
-            f"WHERE id = ?",
+            f"DELETE FROM {self.table_name} WHERE id = ?",
             (id_to_del,)
         )
         self._connect.commit()
