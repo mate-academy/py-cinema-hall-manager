@@ -21,7 +21,7 @@ class ActorManager:
 
     def all(self) -> List[Actor]:
         cinema_cursor = self._connect.execute(
-            f"SELECT id, first_name, last_name "
+            f"SELECT * "
             f"FROM {self.table_name}"
         )
 
