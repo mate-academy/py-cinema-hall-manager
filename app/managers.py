@@ -1,4 +1,5 @@
 import sqlite3
+
 from dataclasses import dataclass
 from app.models import Actor
 
