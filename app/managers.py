@@ -38,3 +38,4 @@ class ActorManager:
             "WHERE id = ?",
             (primary_key_,)
         )
+        self._connection.commit()
