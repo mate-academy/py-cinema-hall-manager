@@ -20,7 +20,7 @@ class ActorManager:
 
     def all(self) -> list:
         cinema_data_cursor = self._connection.execute(
-            "SELECT id, first_name," " last_name FROM actors"
+            "SELECT * FROM actors"
         )
         return [Actor(*row) for row in cinema_data_cursor]
 
