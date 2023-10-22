@@ -8,7 +8,7 @@ class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema")
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             "SELECT * FROM actors"
         )
@@ -33,8 +33,8 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             "UPDATE actors "
-            "SET first_name = (?), last_name = (?) "
-            "WHERE ID = (?)",
+            "SET first_name = ?, last_name = ? "
+            "WHERE id = ?",
             (new_first_name, new_last_name, id_to_update)
         )
         self._connection.commit()
@@ -45,7 +45,7 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             "DELETE FROM actors "
-            "WHERE id = (?)",
+            "WHERE id = ?",
             (id_to_delete,)
         )
         self._connection.commit()
