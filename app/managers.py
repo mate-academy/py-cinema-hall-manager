@@ -1,5 +1,5 @@
 import sqlite3
-from models import ActrModel
+from models import Actor
 
 
 class ActorFormatManagers:
@@ -9,11 +9,11 @@ class ActorFormatManagers:
 
     def all(self) -> list:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name "
+            f"SELECT * "
             f"FROM {self.table_name}"
         )
 
-        return [ActrModel(*row) for row in actors_cursor]
+        return [Actor(*row) for row in actors_cursor]
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(f"INSERT INTO {self.table_name} "
