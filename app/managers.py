@@ -24,7 +24,12 @@ class ActorManager:
         )
         return [Actor(*row) for row in cinema_cursor]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
         self._conection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ?"
@@ -33,7 +38,7 @@ class ActorManager:
         )
         self._conection.commit()
 
-    def delete(self, id_to_delete: int):
+    def delete(self, id_to_delete: int) -> None:
         self._conection.execute(
             f"DELETE FROM {self.table_name} "
             "WHERE id = ?",
