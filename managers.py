@@ -9,7 +9,6 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema_db.db3")
         self.table_name = "actors"
 
-# CREATE C
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} (first_name, last_name)"
@@ -18,7 +17,6 @@ class ActorManager:
         )
         self._connection.commit()
 
-# RETRIEVE (READ) R
     def all(self) -> list:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
@@ -26,7 +24,6 @@ class ActorManager:
 
         return [Actor(*row) for row in actors_cursor]
 
-# UPDATE U
     def update(self,
                id_to_update: int,
                new_first_name: str,
@@ -40,7 +37,6 @@ class ActorManager:
         )
         self._connection.commit()
 
-# DELETE D
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
             f"DELETE FROM {self.table_name} "
