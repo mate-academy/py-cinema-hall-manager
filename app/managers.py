@@ -8,19 +8,11 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
-    def create(self, *args, **kwargs) -> None:
-        if args:
-            f_name = args[0]
-            l_name = args[1]
-        if kwargs:
-            f_name = kwargs.get("first_name")
-            l_name = kwargs.get("last_name")
-        else:
-            return
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) VALUES (?, ?)",
-            (f_name, l_name)
+            (first_name, last_name)
         )
         self._connection.commit()
 
@@ -33,14 +25,14 @@ class ActorManager:
 
     def update(
             self, id_for_update: int,
-            new_f_name: str,
-            new_l_name: str
+            new_first_name: str,
+            new_last_name: str
     ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? "
             "WHERE id = ?",
-            (new_f_name, new_l_name, id_for_update)
+            (new_first_name, new_last_name, id_for_update)
         )
         self._connection.commit()
 
