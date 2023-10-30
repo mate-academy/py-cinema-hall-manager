@@ -6,8 +6,7 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect(
-            "C:/Users/vitto/projects/py-actor-manager/cinema")
+        self._connection = sqlite3.connect("cinema.db3")
         self.table_name = "actors"
 
     def create(
