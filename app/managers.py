@@ -1,10 +1,6 @@
 import sqlite3
 
 from models import Actor
-from abc import ABC, abstractmethod
-
-class Manager(ABC):
-    pass
 
 
 class ActorManager:
