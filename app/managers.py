@@ -9,7 +9,10 @@ class ActorManager:
         self.table_name = "actors"
 
     def all(self) -> list[Actor]:
-        cursor = self._connection.execute("SELECT * FROM actors")
+        cursor = self._connection.execute(
+            "SELECT * "
+            "FROM actors"
+        )
 
         return [Actor(*row) for row in cursor]
 
