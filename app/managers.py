@@ -9,7 +9,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name};"
+            "SELECT id, first_name, last_name "
+            f"FROM {self.table_name};"
         )
 
         return [Actor(*row) for row in actors_cursor]
@@ -29,7 +30,8 @@ class ActorManager:
         last_name: str
     ) -> None:
         self._connection.execute(
-            f"UPDATE {self.table_name} SET first_name = ?, last_name = ?"
+            f"UPDATE {self.table_name} "
+            "SET first_name = ?, last_name = ?"
             "WHERE id = ?;",
             (first_name, last_name, id_to_update)
         )
