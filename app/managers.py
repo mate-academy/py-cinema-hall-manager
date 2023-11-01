@@ -17,7 +17,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actors_cursor = self._connect.execute(
-            f"SELECT * FROM {self.table_name}"
+            f"SELECT * "
+            "FROM {self.table_name}"
         )
         return [Actor(*row) for row in actors_cursor]
 
@@ -35,7 +36,8 @@ class ActorManager:
 
     def delete(self, id_to_delete: int) -> None:
         self._connect.execute(
-            f"DELETE FROM {self.table_name} "
+            f"DELETE "
+            "FROM {self.table_name} "
             "WHERE id = ?",
             (id_to_delete,)
         )
