@@ -17,14 +17,13 @@ class ActorManager:
     def all(self) -> List[Actor]:
         self.cursor.execute("SELECT * FROM actors")
         rows = self.cursor.fetchall()
-        actors = [Actor(id=row[0], first_name=row[1],
-                        last_name=row[2]) for row in rows]
+        actors = [Actor(*row) for row in rows]
         return actors
 
-    def update(self, actor: Actor) -> None:
-        self.cursor.execute("UPDATE actors SET first_name = ?, "
-                            "last_name = ? WHERE id = ?",
-                            (actor.first_name, actor.last_name, actor.id))
+    def update(self, first_name: str, last_name: str, actor_id: int) -> None:
+        self.cursor.execute("UPDATE actors SET first_name = ?,"
+                            " last_name = ? WHERE id = ?",
+                            (first_name, last_name, actor_id))
         self.conn.commit()
 
     def delete(self, actor_id: int) -> None:
