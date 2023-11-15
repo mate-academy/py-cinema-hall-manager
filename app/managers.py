@@ -9,10 +9,8 @@ class ActorManager:
         self.table_name = "actors"
 
     def all(self) -> list:
-        cinema_data = self._connection.execute(f"SELECT id,"
-                                               f" first_name, last_name"
-                                               f" FROM {self.table_name}")
-        print(cinema_data)
+        cinema_data = self._connection.execute(f"SELECT * FROM "
+                                               f"{self.table_name}")
         return [Actor(*row) for row in cinema_data]
 
     def create(self, first_name: str, last_name: str) -> None:
@@ -31,8 +29,8 @@ class ActorManager:
     ) -> None:
         self._connection.execute(f"UPDATE "
                                  f"{self.table_name} "
-                                 f"SET first_name = (?), last_name = (?)"
-                                 f" WHERE id = (?)",
+                                 f"SET first_name = ?, last_name = ?"
+                                 f" WHERE id = ?",
                                  (
                                      new_first_name,
                                      new_last_name,
@@ -43,7 +41,7 @@ class ActorManager:
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(f"DELETE FROM "
                                  f"{self.table_name}"
-                                 f" WHERE  id = (?)",
+                                 f" WHERE  id = ?",
                                  (id_to_delete,)
                                  )
         self._connection.commit()
