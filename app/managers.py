@@ -8,13 +8,13 @@ class ActorManager:
         self.table_name = "actors"
 
     def all(self) -> list:
-        actors_data = self._connection.execute(f"select *
-                                               from {self.table_name}")
+        actors_data = self._connection.execute("select * "
+                                               f"from {self.table_name}")
         return [Actor(*actor) for actor in actors_data]
 
     def create(self, first_name: str, last_name: str) -> None:
-        self._connection.execute(f"insert into {self.table_name} 
-                                 (first_name, last_name) values (?, ?)",
+        self._connection.execute(f"insert into {self.table_name} "
+                                 "(first_name, last_name) values (?, ?)",
                                  (first_name, last_name))
         self._connection.commit()
 
