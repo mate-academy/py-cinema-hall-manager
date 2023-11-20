@@ -10,7 +10,7 @@ class ActorManager:
 
     @staticmethod
     def check_name(first_name: str, last_name: str) -> list:
-        if isinstance(first_name and last_name, str):
+        if isinstance(first_name, str) and isinstance(last_name, str):
             return [name.capitalize() for name in [first_name, last_name]]
         else:
             raise TypeError("Name must be string")
