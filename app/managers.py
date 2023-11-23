@@ -1,5 +1,6 @@
-import sqlite3
 from typing import List
+
+import sqlite3
 
 from app.models import Actor
 
