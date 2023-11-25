@@ -14,14 +14,15 @@ class ActorManager:
             last_name: str
     ) -> None:
         self._connection.execute(
-            f"INSERT INTO actors (first_name, last_name)"
-            f"VALUES (?, ?)",
+            "INSERT INTO actors (first_name, last_name)"
+            "VALUES (?, ?)",
             (first_name, last_name)
         )
+        self._connection.commit()
 
     def all(self) -> List[Actor]:
         actor_cursor = self._connection.execute(
-            f"SELECT * FROM actors"
+            "SELECT * FROM actors"
         )
 
         return [Actor(*info) for info in actor_cursor]
@@ -33,15 +34,17 @@ class ActorManager:
             last_name: str
     ) -> None:
         self._connection.execute(
-            f"UPDATE actors "
-            f"SET first_name = ?, last_name = ? "
-            f"WHERE id = ?",
+            "UPDATE actors "
+            "SET first_name = ?, last_name = ? "
+            "WHERE id = ?",
             (first_name, last_name, id_number)
         )
+        self._connection.commit()
 
     def delete(self, id_number: int) -> None:
         self._connection.execute(
-            f"DELETE FROM actors "
-            f"WHERE id = (?)",
+            "DELETE FROM actors "
+            "WHERE id = (?)",
             (id_number,)
         )
+        self._connection.commit()
