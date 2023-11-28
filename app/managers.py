@@ -5,22 +5,21 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema")
+        self._connection = sqlite3.connect("cinema_db")
         self.table_name = "actors"
 
-    def create(self, actor: Actor) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            "INSERT INTO actors "
-            "(id, first_name, last_name) "
-            "VALUES (?, ?, ?)",
-            (actor.id, actor.first_name, actor.last_name)
+            f"INSERT INTO {self.table_name}"
+            f"(first_name, last_name) VALUES (?, ?)",
+            (first_name, last_name)
         )
 
         self._connection.commit()
 
     def all(self) -> list[Actor]:
         cursor = self._connection.execute(
-            f"SELECT id, first_name, last_name FROM {self.table_name}"
+            f"SELECT * FROM {self.table_name}"
         )
 
         return [Actor(*row) for row in cursor]

@@ -1,15 +1,10 @@
-from models import Actor
 from managers import ActorManager
 
 if __name__ == "__main__":
     actor_manager = ActorManager()
 
-    actor_manager.create(Actor(id=1, first_name="Emma", last_name="Watson"))
-    actor_manager.create(Actor(
-        id=2,
-        first_name="Daniel",
-        last_name="Radcliffe")
-    )
+    actor_manager.create(first_name="Emma", last_name="Watson")
+    actor_manager.create(first_name="Daniel", last_name="Radcliffe")
 
     print(actor_manager.all())
 
