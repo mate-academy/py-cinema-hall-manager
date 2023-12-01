@@ -16,7 +16,7 @@ class ActorManager:
         )
         self.__connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors = self.__connection.execute(
             f"SELECT * FROM {self.tabl_name}"
         )
