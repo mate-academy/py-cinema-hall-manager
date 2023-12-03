@@ -30,7 +30,11 @@ class ActorManager:
         actors = [Actor(*row) for row in cursor.fetchall()]
         return actors
 
-    def update(self, actor_id: int, first_name: Optional[str] = None, last_name: Optional[str] = None) -> None:
+    def update(self,
+               actor_id: int,
+               first_name: Optional[str] = None,
+               last_name: Optional[str] = None
+               ) -> None:
         actor = self.get_actor_by_id(actor_id)
 
         if actor:
@@ -40,7 +44,10 @@ class ActorManager:
                 actor.last_name = last_name
 
             query = "UPDATE actors SET first_name=?, last_name=? WHERE id=?"
-            self.conn.execute(query, (actor.first_name, actor.last_name, actor.id))
+            self.conn.execute(query,
+                              (actor.first_name,
+                               actor.last_name,
+                               actor.id))
             self.conn.commit()
 
     def delete(self, actor_id: int) -> None:
