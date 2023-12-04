@@ -62,5 +62,3 @@ class ActorManager:
 
         if actor_data:
             return Actor(*actor_data)
-        else:
-            return None
