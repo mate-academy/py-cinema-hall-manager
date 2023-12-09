@@ -43,14 +43,3 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
-
-
-# if __name__ == "__main__":
-#     manager = ActorManager()
-#     manager.all()
-#     manager.update(
-#         id_to_update=1,
-#         new_format="prose"
-#     )
-#     manager.delete(id_to_delete=3)
-#     print(manager.all())
