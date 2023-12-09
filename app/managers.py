@@ -9,10 +9,10 @@ class ActorManager:
         self._connection = sqlite3.connect("db_path")
         self.table_name = "actors"
 
-    def create(self, format_: str) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} (format) VALUES (?)",
-            (format_,)
+            (first_name, last_name)
         )
         self._connection.commit()
 
@@ -22,12 +22,17 @@ class ActorManager:
         )
         return [Actor(*row) for row in actor_data_cursor]
 
-    def update(self, id_to_update: int, new_format: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            first_name: str,
+            last_name: str
+    ) -> None:
         self._connection.execute(
             f"UPDATE{self.table_name} "
             "SET format = ?"
             "WHERE id = ?",
-            (new_format, id_to_update)
+            (id_to_update, first_name, last_name)
         )
         self._connection.commit()
 
