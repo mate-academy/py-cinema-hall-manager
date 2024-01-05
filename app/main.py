@@ -11,3 +11,5 @@
 #     print(Actor.objects.all())
 #     Actor.objects.delete(1)
 #     print(Actor.objects.all())
+
+print(1)
