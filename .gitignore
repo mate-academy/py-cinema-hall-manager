@@ -7,3 +7,4 @@ venv/
 .pytest_cache/
 **__pycache__/
 **db.sqlite3
+C:\Users\K-1\projects\py-actor-manager\app\cinema.db3
