@@ -17,8 +17,7 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         return [Actor(*row) for row in self._connection.execute(
-            "SELECT id, first_name, last_name "
-            f"FROM {self.table_name}"
+            f"SELECT * FROM {self.table_name}"
         )]
 
     def update(
