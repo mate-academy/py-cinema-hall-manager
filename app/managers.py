@@ -3,7 +3,7 @@ from app.models import Actor
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self._connection = mysql.connector.connect(
             host="127.0.0.2",
             user="root",
@@ -22,7 +22,7 @@ class ActorManager:
         self._connection.commit()
 
     def all(self) -> list[Actor]:
-        self.cursor.execute(f"SELECT * FROM ACTORS")
+        self.cursor.execute("SELECT * FROM ACTORS")
         return [Actor(*row) for row in self.cursor.fetchall()]
 
     def update(self, id_: int, first_name: str, last_name: str, ) -> None:
@@ -41,4 +41,3 @@ class ActorManager:
             (id_,)
         )
         self._connection.commit()
-
