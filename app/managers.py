@@ -17,11 +17,10 @@ class ActorManager:
         self.conn.commit()
 
     def create(self, first_name: str, last_name: str) -> None:
-        actor = Actor(id=None, first_name=first_name, last_name=last_name)
         self.cursor.execute("""
-            INSERT INTO actors (id, first_name, last_name)
-            VALUES (?, ?, ?)
-        """, (actor.id, actor.first_name, actor.last_name))
+            INSERT INTO actors (first_name, last_name)
+            VALUES (?, ?)
+        """, (first_name, last_name))
         self.conn.commit()
 
     def all(self) -> list[Actor]:
@@ -29,9 +28,7 @@ class ActorManager:
         rows = self.cursor.fetchall()
         return [Actor(*row) for row in rows]
 
-    def update(self, actor_id: int,
-               first_name: str,
-               last_name: str) -> None:
+    def update(self, actor_id: int, first_name: str, last_name: str) -> None:
         self.cursor.execute("""
             UPDATE actors
             SET first_name = ?, last_name = ?
