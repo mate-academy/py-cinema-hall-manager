@@ -16,7 +16,8 @@ class ActorManager:
         """)
         self.conn.commit()
 
-    def create(self, actor: Actor) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
+        actor = Actor(id=None, first_name=first_name, last_name=last_name)
         self.cursor.execute("""
             INSERT INTO actors (id, first_name, last_name)
             VALUES (?, ?, ?)
@@ -29,13 +30,13 @@ class ActorManager:
         return [Actor(*row) for row in rows]
 
     def update(self, actor_id: int,
-               new_first_name: str,
-               new_last_name: str) -> None:
+               first_name: str,
+               last_name: str) -> None:
         self.cursor.execute("""
             UPDATE actors
             SET first_name = ?, last_name = ?
             WHERE id = ?
-        """, (new_first_name, new_last_name, actor_id))
+        """, (first_name, last_name, actor_id))
         self.conn.commit()
 
     def delete(self, actor_id: int) -> None:
