@@ -8,8 +8,8 @@ class ActorManager:
     def __init__(
             self
     ) -> None:
-        self.table_name = "D:/Python_projects/User/py-actor-manager/cinema"
-        self.connection_ = sqlite3.connect(f"{self.table_name}")
+        self.table_name = "actors"
+        self.connection_ = sqlite3.connect("cinema")
 
     # CREATE
     def create(
@@ -18,7 +18,7 @@ class ActorManager:
         last_name: str
     ) -> None:
         self.connection_.execute(
-            f"INSERT INTO {self.table_name}"
+            f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) "
             f"VALUES (?, ?)",
             (first_name, last_name)
@@ -31,7 +31,7 @@ class ActorManager:
             self
     ) -> list:
         actors_cursor = self.connection_.execute(
-            "SELECT id, first_name, last_name"
+            "SELECT id, first_name, last_name "
             f"FROM {self.table_name} "
         )
         return [Actor(*row) for row in actors_cursor]
@@ -47,7 +47,7 @@ class ActorManager:
         self.connection_.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name = ?, last_name = ? "
-            f"WHERE id_to_update = ?",
+            f"WHERE id = ?",
             (first_name_to_update,
              last_name_to_update,
              id_to_update)
