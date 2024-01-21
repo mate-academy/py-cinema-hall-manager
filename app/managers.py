@@ -31,7 +31,7 @@ class ActorManager:
             self
     ) -> list:
         actors_cursor = self.connection_.execute(
-            "SELECT id, first_name, last_name "
+            "SELECT * "
             f"FROM {self.table_name} "
         )
         return [Actor(*row) for row in actors_cursor]
@@ -41,15 +41,15 @@ class ActorManager:
     def update(
         self,
         id_to_update: int,
-        first_name_to_update: str,
-        last_name_to_update: str
+        first_name: str,
+        last_name: str
     ) -> None:
         self.connection_.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name = ?, last_name = ? "
             f"WHERE id = ?",
-            (first_name_to_update,
-             last_name_to_update,
+            (first_name,
+             last_name,
              id_to_update)
         )
         self.connection_.commit()
