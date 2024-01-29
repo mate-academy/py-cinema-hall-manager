@@ -5,10 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect(
-            "/home/arsen/PycharmProjects/MateAcademy"
-            "/DjangoORM/py-actor-manager/cinema.sqlite"
-        )
+        self._connection = sqlite3.connect("cinema.sqlite")
 
     def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
