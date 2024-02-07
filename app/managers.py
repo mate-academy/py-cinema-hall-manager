@@ -1,5 +1,7 @@
 import sqlite3
 
+from app.models import Actor
+
 
 class ActorManager:
 
@@ -25,6 +27,10 @@ class ActorManager:
         )
         for row in actors_cursor:
             print(row)
+
+        return [
+            Actor(*row) for row in actors_cursor
+        ]
 
     def update(
             self,
