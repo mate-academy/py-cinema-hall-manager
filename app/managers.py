@@ -5,7 +5,10 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("/mate_homework/djangoProject/djangoProject/cinema.sqlite")
+        self._connection = (
+            sqlite3.connect
+            ("/mate_homework/djangoProject/djangoProject/cinema.sqlite")
+        )
         self._table_name = "actors"
 
     def all(self) -> list:
