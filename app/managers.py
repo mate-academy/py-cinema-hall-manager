@@ -15,19 +15,18 @@ class ActorManager:
             last_name: str
     ) -> None:
         self._conn.execute(
-            f"INSERT INTO {self._table_name} "
-            "(first_name, last_name) VALUES (?, ?) ",
+            f"INSERT INTO "
+            f"{self._table_name} (first_name, last_name) "
+            f"VALUES (?, ?) ",
             (first_name, last_name)
         )
         self._conn.commit()
 
-    def all(self) -> None:
+    def all(self) -> list:
         actors_cursor = self._conn.execute(
             f"SELECT * FROM {self._table_name}"
         )
-        for row in actors_cursor:
-            print(row)
-
+        
         return [
             Actor(*row) for row in actors_cursor
         ]
@@ -48,7 +47,9 @@ class ActorManager:
 
     def delete(self, id_to_delete: int) -> None:
         self._conn.execute(
-            f"DELETE FROM {self._table_name} WHERE id = ?",
+            f"DELETE "
+            f"FROM {self._table_name} "
+            f"WHERE id = ?",
             (id_to_delete,)
         )
         self._conn.commit()
