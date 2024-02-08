@@ -41,8 +41,18 @@ class ActorManager:
         )
         self._connect.commit()
 
-    def all(self) -> []:
+    def all(self) -> [Actor]:
         actor_cursor = self._connect.execute(
             f"SELECT * FROM {self.table_name}"
         )
+
         return [Actor(*actor) for actor in actor_cursor]
+
+    def get(self, id_to_get: int) -> Actor:
+        actor_cursor = self._connect.execute(
+            f"SELECT * FROM {self.table_name} WHERE id = ? ",
+            (id_to_get,),
+        )
+        actor_cursor = actor_cursor.fetchone()
+
+        return Actor(*actor_cursor)
