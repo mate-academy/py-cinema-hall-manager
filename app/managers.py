@@ -4,15 +4,17 @@ from models import Actor
 
 class ActorManager:
     def __init__(self, table_actors: str) -> None:
-        self.conn = sqlite3.connect("C:/projects/py-actor-manager/identifier.sqlite")
+        self.conn = sqlite3.connect(
+            "C:/projects/py-actor-manager/identifier.sqlite"
+        )
         self.cursor = self.conn.cursor()
         self.table_actors = table_actors
 
     def create(self, first_name: str, last_name: str) -> None:
         self.cursor.execute(
             f"""
-            INSERT INTO {self.table_actors} 
-            (first_name, last_name) 
+            INSERT INTO {self.table_actors}
+            (first_name, last_name)
             VALUES (?, ?)
             """,
             (first_name, last_name)
@@ -28,10 +30,10 @@ class ActorManager:
         self.cursor.execute(
             f"""
             UPDATE {self.table_actors}
-            SET 
-                first_name = ?, 
-                last_name = ? 
-            WHERE 
+            SET
+                first_name = ?,
+                last_name = ?
+            WHERE
                 id = ?
             """,
             (first_name, last_name, actor_id)
@@ -41,7 +43,7 @@ class ActorManager:
     def delete(self, actor_id: int) -> None:
         self.cursor.execute(
             f"""
-            DELETE FROM {self.table_actors} 
+            DELETE FROM {self.table_actors}
             WHERE id = ?
             """,
             (actor_id,)
