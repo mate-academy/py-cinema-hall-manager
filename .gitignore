@@ -5,5 +5,6 @@
 .DS_Store
 venv/
 .pytest_cache/
+.cinema.sqlite
 **__pycache__/
 **db.sqlite3
