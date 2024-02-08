@@ -44,8 +44,3 @@ class ActorManager:
             (actor_id,)
         )
         self._connection.commit()
-
-
-# manager = ActorManager()
-# manager.create(new_first_name='sdcds', new_last_name='sdcdsac')
-# print(manager.all())
