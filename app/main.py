@@ -1,5 +1,5 @@
 from models import Actor
-from managesqlrs import ActorManager
+from managers import ActorManager
 
 if __name__ == "__main__":
     Actor.objects = ActorManager()
@@ -9,5 +9,5 @@ if __name__ == "__main__":
     print(Actor.objects.all())
     Actor.objects.update(2, "Daniel", "Radcliffe")
     print(Actor.objects.all())
-    Actor.objects.delete(1)
+    Actor.objects.delete(3)
     print(Actor.objects.all())
