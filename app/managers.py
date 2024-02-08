@@ -15,6 +15,7 @@ class ActorManager:
             f"(first_name, last_name) VALUES (?, ?)",
             (first_name, last_name,)
         )
+        self._connection.commit()
 
     def all(self) -> list:
         actor_cursor = self._connection.execute(
@@ -40,3 +41,4 @@ class ActorManager:
             f"DELETE FROM {self.table_name} WHERE id = ? ",
             (id_to_delete,)
         )
+        self._connection.commit()
