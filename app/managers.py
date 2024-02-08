@@ -40,7 +40,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def delete(self, id_key: int):
+    def delete(self, id_key: int) -> None:
         self._connection.execute(
             f"DELETE FROM {self.table_name} WHERE id = ?",
             (id_key,)
