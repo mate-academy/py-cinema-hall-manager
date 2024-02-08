@@ -22,7 +22,12 @@ class ActorManager:
 
         return [Actor(*line) for line in cursor]
 
-    def update(self, id_actor: int, update_first_name: str, update_last_name: str) -> None:
+    def update(
+            self,
+            id_actor: int,
+            update_first_name: str,
+            update_last_name: str
+    ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? "
