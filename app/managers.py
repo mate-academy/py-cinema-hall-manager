@@ -25,7 +25,7 @@ class ActorManager:
     def all(self) -> list:
         actors_cursor = self._conn.execute(
             f"SELECT * FROM {self._table_name}"
-        )        
+        )
         return [
             Actor(*row) for row in actors_cursor
         ]
