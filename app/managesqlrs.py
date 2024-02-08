@@ -14,7 +14,7 @@ class ActorManager:
         self._connection.execute(
             f"INSERT INTO {self._table_name} (first_name, last_name) "
             f"VALUES (?, ?)",
-            (last_name, first_name)
+            (first_name, last_name)
         )
         self._connection.commit()
 
