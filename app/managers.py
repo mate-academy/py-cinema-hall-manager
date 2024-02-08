@@ -29,7 +29,7 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             f"UPDATE {self.table} "
-            f"SET (first_name, last_name) = (?, ?) "
+            "SET (first_name, last_name) = (?, ?) "
             "WHERE id = (?)",
             (first_name, last_name, id_to_update)
         )
