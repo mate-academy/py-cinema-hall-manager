@@ -37,16 +37,16 @@ class ActorManager:
 
     def delete(self, id_to_delete: int) -> None:
         self._connect.execute(
-            f"DELETE "
+            "DELETE "
             f"FROM {self.table_name} "
-            f"WHERE id = ? ",
+            "WHERE id = ? ",
             (id_to_delete,),
         )
         self._connect.commit()
 
     def all(self) -> [Actor]:
         actor_cursor = self._connect.execute(
-            f"SELECT * "
+            "SELECT * "
             f"FROM {self.table_name}"
         )
 
@@ -54,9 +54,9 @@ class ActorManager:
 
     def get(self, id_to_get: int) -> Actor:
         actor_cursor = self._connect.execute(
-            f"SELECT * "
+            "SELECT * "
             f"FROM {self.table_name} "
-            f"WHERE id = ? ",
+            "WHERE id = ? ",
             (id_to_get,),
         )
         actor_cursor = actor_cursor.fetchone()
