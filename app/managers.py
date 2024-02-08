@@ -1,4 +1,5 @@
 import sqlite3
+
 from app.models import Actor
 
 
@@ -10,7 +11,7 @@ class ActorManager:
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self._table_name} (first_name, last_name)"
-            f" VALUES (?, ?)",
+            " VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
@@ -23,7 +24,8 @@ class ActorManager:
 
     def delete(self, actor_id: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self._table_name} WHERE id = ?",
+            f"DELETE FROM {self._table_name}"
+            " WHERE id = ?",
             (actor_id,)
         )
         self._connection.commit()
@@ -36,8 +38,8 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             f"UPDATE {self._table_name}"
-            f" SET first_name = ?, last_name = ?"
-            f" WHERE id = ?",
+            " SET first_name = ?, last_name = ?"
+            " WHERE id = ?",
             (actor_id, new_first_name, new_last_name)
         )
         self._connection.commit()
