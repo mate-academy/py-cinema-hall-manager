@@ -9,7 +9,7 @@ if __name__ == "__main__":
     Actor.objects.create(first_name="Kim", last_name="Kardashian")
 
     print(Actor.objects.all())
-    #  Actor.objects.update(1, "Daniel", "Radcliffe")
+    Actor.objects.update(13, "Not", "an actor")
     print(Actor.objects.all())
-    Actor.objects.delete(7)
+    Actor.objects.delete(13)
     print(Actor.objects.all())
