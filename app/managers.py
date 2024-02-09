@@ -1,11 +1,12 @@
 import sqlite3
+
 from models import Actor
 
 
 class ActorManager:
     def __init__(self, table_actors: str) -> None:
         self.conn = sqlite3.connect(
-            "C:/projects/py-actor-manager/identifier.sqlite"
+            "identifier.sqlite"
         )
         self.cursor = self.conn.cursor()
         self.table_actors = table_actors
