@@ -7,13 +7,14 @@ class ActorManager:
     def __init__(self) -> None:
         self._connection = (
             sqlite3.connect
-            ("/mate_homework/djangoProject/djangoProject/cinema.sqlite")
+            ("../cinema.sqlite")
         )
         self._table_name = "actors"
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
-            f"SELECT * FROM {self._table_name}"
+            f"SELECT * "
+            f"FROM {self._table_name}"
         )
         return [
             Actor(*row) for row in actors_cursor
@@ -33,15 +34,16 @@ class ActorManager:
                last_name: str) -> None:
         self._connection.execute(
             f"UPDATE {self._table_name} "
-            "SET (first_name) = (?), (last_name) = (?) "
-            "WHERE (id) = (?) ",
+            "SET first_name = ?, last_name = ? "
+            "WHERE id = ? ",
             (id_to_update, first_name, last_name)
         )
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self._table_name} WHERE id = ? ",
+            f"DELETE FROM {self._table_name} "
+            f"WHERE id = ? ",
             (id_to_delete, )
         )
         self._connection.commit()
