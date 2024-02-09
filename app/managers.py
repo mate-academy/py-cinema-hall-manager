@@ -23,8 +23,7 @@ class ActorManager:
         self.conn.commit()
 
     def all(self) -> list:
-        self.cursor.execute(f"SELECT * FROM {self.table_actors}")
-        rows = self.cursor.fetchall()
+        rows = self.cursor.execute(f"SELECT * FROM {self.table_actors}")
         return [Actor(*row) for row in rows]
 
     def update(self, actor_id: int, first_name: str, last_name: str) -> None:
@@ -32,10 +31,9 @@ class ActorManager:
             f"""
             UPDATE {self.table_actors}
             SET
-                first_name = ?,
-                last_name = ?
-            WHERE
-                id = ?
+            first_name = ?,
+            last_name = ?
+            WHERE id = ?
             """,
             (first_name, last_name, actor_id)
         )
