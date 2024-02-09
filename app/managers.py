@@ -11,15 +11,15 @@ class ActorManager:
     def create(self, first_name: str, last_name: str) -> None:
         self.conn.execute(
             f"INSERT INTO {self.table} "
-            f"(first_name, last_name) "
-            f"VALUES (?, ?)",
+            "(first_name, last_name) "
+            "VALUES (?, ?)",
             (first_name, last_name)
         )
         self.conn.commit()
 
     def all(self) -> list[Actor]:
         actors_cursor = self.conn.execute(
-            f"SELECT * "
+            "SELECT * "
             f"FROM {self.table}"
         )
         return [Actor(*row) for row in actors_cursor]
@@ -30,9 +30,9 @@ class ActorManager:
                new_last_name: str) -> None:
         self.conn.execute(
             f"UPDATE {self.table}"
-            f" SET first_name = ?,"
-            f" last_name =? "
-            f"WHERE id = ?",
+            " SET first_name = ?,"
+            " last_name =? "
+            "WHERE id = ?",
             (id_to_update, new_first_name, new_last_name)
         )
         self.conn.commit()
@@ -40,7 +40,7 @@ class ActorManager:
     def delete(self, id_to_delete: int) -> None:
         self.conn.execute(
             f"DELETE FROM {self.table}"
-            f" WHERE id = ?",
+            " WHERE id = ?",
             (id_to_delete,)
         )
         self.conn.commit()
