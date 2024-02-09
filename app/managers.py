@@ -19,11 +19,11 @@ class ActorManager:
         self._connection.commit()
 
     def all(self) -> list[Actor]:
-        self._cursor.execute(f"SELECT * FROM {self.table_name}")
+        self._cursor.execute(f"SELECT * "
+                             f"FROM {self.table_name}")
         return [
             Actor(*row) for row in self._cursor.fetchall()
         ]
-        self._connection.commit()
 
     def delete(self, id_del: int) -> None:
         self._cursor.execute(
