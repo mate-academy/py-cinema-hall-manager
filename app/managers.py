@@ -10,15 +10,16 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self.table_name} (first_name, last_name) "
+            f"VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
 
     def all(self) -> list[Actor]:
         actor_cursor = self._connection.execute(
-            f"SELECT * FROM {self.table_name}"
+            f"SELECT * "
+            f"FROM {self.table_name}"
         )
 
         return [
@@ -39,7 +40,8 @@ class ActorManager:
 
     def delete(self, actor_id: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} WHERE id = ?",
+            f"DELETE FROM {self.table_name} "
+            f"WHERE id = ?",
             (actor_id,)
         )
         self._connection.commit()
