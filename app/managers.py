@@ -20,7 +20,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -42,12 +42,3 @@ class ActorManager:
             f"WHERE id = ?",
             (id,)
         )
-
-
-if __name__ == "__main__":
-    print(parent_directory)
-    actor = ActorManager()
-    # actor.create("boris", "borisovich")
-    actor.update(1, "oleg", "bobsonov")
-    actor.delete(2)
-    print(actor.all())
