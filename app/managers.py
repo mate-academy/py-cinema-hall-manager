@@ -1,4 +1,5 @@
 import sqlite3
+
 from app.models import Actor
 
 
@@ -9,7 +10,8 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
+            f"INSERT "
+            f"INTO {self.table_name} "
             "(first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
@@ -17,7 +19,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         cursor = self._connection.execute(
-            f"SELECT * FROM {self.table_name}"
+            f"SELECT *"
+            f" FROM {self.table_name}"
         )
 
         return [Actor(*line) for line in cursor]
@@ -38,7 +41,9 @@ class ActorManager:
 
     def delete(self, id_actor: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} WHERE id = ? ",
+            f"DELETE "
+            f"FROM {self.table_name} "
+            f"WHERE id = ? ",
             (id_actor,)
         )
         self._connection.commit()
