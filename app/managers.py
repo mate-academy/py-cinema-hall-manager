@@ -35,7 +35,9 @@ class ActorManager:
         cursor = self._connection.cursor()
 
         cursor.execute(
-            f"INSERT INTO {self._table_name} (first_name, last_name) VALUES (%s, %s)",
+            f"INSERT INTO "
+            f"{self._table_name} (first_name, last_name) "
+            f"VALUES (%s, %s)",
             (first_name, last_name))
 
         self._connection.commit()
@@ -57,10 +59,12 @@ class ActorManager:
 
         self._connection.commit()
 
-    def delete(self, actor_id) -> None:
+    def delete(self, actor_id: int) -> None:
         cursor = self._connection.cursor()
 
-        cursor.execute(f"DELETE FROM {self._table_name} WHERE id = %s", (actor_id,))
+        cursor.execute(f"DELETE FROM {self._table_name} "
+                       f"WHERE id = %s",
+                       (actor_id,)
+                       )
 
         self._connection.commit()
-
