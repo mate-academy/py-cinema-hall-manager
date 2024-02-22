@@ -11,7 +11,7 @@ class ActorManager:
                 host="localhost",
                 database="cinema",
                 user="postgres",
-                password="15vktelefon",
+                password="",
                 port=5432,
             )
 
