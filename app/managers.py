@@ -6,10 +6,11 @@ from models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self.connection = sqlite3.connect("cinema.sqlite")
+        self.table_name = "actors"
 
     def all(self) -> list:
         actors_cursor = self.connection.execute(
-            "SELECT * FROM actors"
+            f"SELECT * FROM {self.table_name}"
         )
         print(f"actors_cursor: {actors_cursor}")
         actors = []
