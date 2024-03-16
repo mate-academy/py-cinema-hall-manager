@@ -1,13 +1,16 @@
 import sqlite3
+import os
 
 from models import Actor
 
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect(
-            "/MateProjectsPython/py-actor-manager/cinema.sqlite"
-        )
+        current_directory = os.getcwd()
+        parent_directory = os.path.dirname(current_directory)
+        relative_path = "cinema.sqlite"
+        absolute_path = os.path.join(parent_directory, relative_path)
+        self._connection = sqlite3.connect(absolute_path)
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
@@ -20,9 +23,6 @@ class ActorManager:
         actor_manager_cursor = self._connection.execute(
             "SELECT * FROM actors"
         )
-        # print(f"actor_manager_cursor: {actor_manager_cursor}")
-        # for row in actor_manager_cursor:
-        #     print(row)
         return [
             Actor(*row) for row in actor_manager_cursor
         ]
