@@ -36,4 +36,3 @@ class ActorManager:
         sql = f"DELETE FROM {self.table_name} WHERE id = ?"
         self.conn.execute(sql, (actor_id,))
         self.conn.commit()
-gi
