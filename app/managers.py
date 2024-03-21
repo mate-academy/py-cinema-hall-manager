@@ -29,7 +29,7 @@ class ActorManager:
             updates.append("last_name = ?")
             params.append(last_name)
         params.append(actor_id)
-        sql = f"UPDATE {self.table_name} SET {", ".join(updates)} WHERE id = ?"
+        sql = f"UPDATE {self.table_name} SET {', '.join(updates)} WHERE id = ?"
         self.conn.execute(sql, tuple(params))
         self.conn.commit()
 
