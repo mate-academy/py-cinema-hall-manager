@@ -14,7 +14,7 @@ class ActorManager:
         self.conn.execute(sql, (first_name, last_name))
         self.conn.commit()
 
-    def all(self):
+    def all(self) -> list:
         sql = f"SELECT * FROM {self.table_name}"
         actor_cursor = self.conn.execute(sql)
         return [Actor(*row) for row in actor_cursor]
