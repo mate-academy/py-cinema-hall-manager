@@ -39,9 +39,3 @@ class ActorManager:
             (actor_id,)
         )
         self._connection.commit()
-
-
-#
-# if __name__ == "__main__":
-#     manager = ActorManager()
-#     print(manager.all())
