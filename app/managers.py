@@ -1,16 +1,16 @@
 import sqlite3
-
 from models import Actor
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.connection = sqlite3.connect("cinema_db.sqlite3")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self.connection.execute(
-            f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self.table_name}"
+            f" (first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self.connection.commit()
@@ -23,7 +23,11 @@ class ActorManager:
             Actor(*row) for row in cinema_cursor
         ]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str):
+    def update(
+            self, id_to_update: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
         self.connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? "
