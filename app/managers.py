@@ -1,5 +1,7 @@
 import sqlite3
 
+from models import Actor
+
 
 class ActorManager:
     def __init__(self) -> None:
@@ -11,3 +13,7 @@ class ActorManager:
             "VALUES (?, ?)",
             (first_name, last_name))
         self._connection.commit()
+
+    def all(self) -> list[Actor]:
+        actor_manager_cursor = self._connection.execute("SELECT * FROM actors")
+        return [Actor(*row) for row in actor_manager_cursor]
