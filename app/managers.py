@@ -24,6 +24,7 @@ class ActorManager:
         self.connect.commit()
 
     def delete(self, id: int) -> None:
+
         sql = "DELETE FROM actors WHERE id = ?"
         self.connect.execute(sql, (id,))
         self.connect.commit()
