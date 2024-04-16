@@ -21,17 +21,17 @@ class ActorManager:
             for i in self.connection.execute("SELECT * FROM actors").fetchall()
         ]
 
-    def update(self, id: int, first_name: str, last_name: str) -> None:
+    def update(self, id_: int, first_name: str, last_name: str) -> None:
         self.connection.execute(
             "UPDATE actors"
             " SET first_name = ?, last_name = ? "
             "WHERE id = ?",
-            (first_name, last_name, id)
+            (first_name, last_name, id_)
         )
         self.connection.commit()
 
-    def delete(self, id: int) -> None:
+    def delete(self, id_: int) -> None:
         self.connection.execute(
-            "DELETE FROM actors WHERE id = ?", (id,)
+            "DELETE FROM actors WHERE id = ?", (id_,)
         )
         self.connection.commit()
