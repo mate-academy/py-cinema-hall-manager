@@ -12,8 +12,7 @@ class ActorManager:
             """
             INSERT INTO actors (first_name, last_name)
             VALUES (?, ?)
-            """,
-            (first_name, last_name)
+            """, (first_name, last_name)
         )
         self._connection.commit()
 
@@ -34,8 +33,7 @@ class ActorManager:
             UPDATE actors
             SET first_name = ?, last_name = ?
             WHERE id = ?
-            """,
-            (new_first_name, new_last_name, id_to_update)
+            """, (new_first_name, new_last_name, id_to_update)
         )
         self._connection.commit()
 
@@ -44,7 +42,6 @@ class ActorManager:
             """
             DELETE
             FROM actors WHERE id = ?
-            """,
-            (id_to_delete,)
+            """, (id_to_delete,)
         )
         self._connection.commit()
