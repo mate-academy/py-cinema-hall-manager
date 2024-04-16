@@ -10,7 +10,7 @@ class ActorManager:
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             """
-            INSERT INTO actors (first_name, last_name) 
+            INSERT INTO actors (first_name, last_name)
             VALUES (?, ?)
             """,
             (first_name, last_name)
@@ -29,8 +29,8 @@ class ActorManager:
                new_first_name: str, new_last_name: str) -> None:
         self._connection.execute(
             """
-            UPDATE actors 
-            SET (first_name, last_name) = (?, ?) 
+            UPDATE actors
+            SET (first_name, last_name) = (?, ?)
             WHERE id = ?
             """,
             (new_first_name, new_last_name, id_to_update)
@@ -40,7 +40,7 @@ class ActorManager:
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
             """
-            DELETE FROM actors 
+            DELETE FROM actors
             WHERE id = ?
             """,
             (id_to_delete,)
