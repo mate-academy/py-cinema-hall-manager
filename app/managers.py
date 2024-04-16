@@ -20,7 +20,7 @@ class ActorManager:
     def all(self) -> list:
         actors_output = self._connection.execute(
             """
-            SELECT * 
+            SELECT *
             FROM actors
             """
         )
@@ -41,7 +41,7 @@ class ActorManager:
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
             """
-            DELETE 
+            DELETE
             FROM actors
             WHERE id = ?
             """,
