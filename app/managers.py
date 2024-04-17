@@ -25,10 +25,7 @@ class ActorManager:
             FROM actors
             """
         )
-        return [
-            Actor(**i)
-            for i in all_actors.fetchall()
-        ]
+        return [Actor(**i) for i in all_actors.fetchall()]
 
     def update(self, id_: int, first_name: str, last_name: str) -> None:
         self.connection.execute(
