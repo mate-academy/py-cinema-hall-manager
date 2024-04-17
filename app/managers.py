@@ -1,6 +1,6 @@
 import sqlite3
 
-from app.models import Actor
+from models import Actor
 
 
 class ActorManager:
@@ -9,7 +9,7 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            """INSERT INTO actors (first_name, last_name) 
+            """INSERT INTO actors (first_name, last_name)
             VALUES (?, ?)""",
             (first_name, last_name)
         )
@@ -21,10 +21,15 @@ class ActorManager:
         )
         return [Actor(*row) for row in actors_cursor]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
         self._connection.execute(
-            """UPDATE actors 
-            SET first_name = ?, last_name = ? 
+            """UPDATE actors
+            SET first_name = ?, last_name = ?
             WHERE id = ?""",
             (new_first_name, new_last_name, id_to_update)
         )
