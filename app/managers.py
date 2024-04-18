@@ -6,7 +6,6 @@ from app.models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self.connection = sqlite3.connect("../cinema.sqlite")
-        self.connection.row_factory = sqlite3.Row
 
     def create(self, first_name: str, last_name: str) -> None:
         self.connection.execute(
@@ -25,7 +24,7 @@ class ActorManager:
             FROM actors
             """
         )
-        return [Actor(**i) for i in all_actors.fetchall()]
+        return [Actor(*actor) for actor in all_actors.fetchall()]
 
     def update(self, id_: int, first_name: str, last_name: str) -> None:
         self.connection.execute(
