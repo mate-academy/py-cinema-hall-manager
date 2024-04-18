@@ -9,5 +9,5 @@ if __name__ == "__main__":
 #    print(Actor.objects.all())
 #    Actor.objects.update(2, "Daniel", "Radcliffe")
 #    print(Actor.objects.all())
-    Actor.objects.delete(6)
-    print(Actor.objects.all())
+#    Actor.objects.delete(10)
+#    print(Actor.objects.all())
