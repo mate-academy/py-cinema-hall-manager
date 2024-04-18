@@ -1,4 +1,5 @@
 import sqlite3
+
 from models import Actor
 
 
@@ -16,7 +17,8 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         actors = self._connection.execute(f"""
-            SELECT * FROM {self.table_name}
+            SELECT *
+            FROM {self.table_name}
         """)
         return [Actor(*actor) for actor in actors]
 
