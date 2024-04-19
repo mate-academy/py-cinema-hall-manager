@@ -29,14 +29,18 @@ class ActorManager:
     def update(self, id_to_update: int,
                new_first_name: str, new_last_name: str) -> None:
         self.conn.execute(
-            "UPDATE actors SET first_name = ?, last_name = ? WHERE id = ?",
+            "UPDATE actors "
+            "SET first_name = ?, last_name = ? "
+            "WHERE id = ?",
             (new_first_name, new_last_name, id_to_update)
         )
         self.conn.commit()
 
     def delete(self, id_to_delete: int) -> None:
         self.conn.execute(
-            "DELETE FROM actors WHERE id = ?",
+            "DELETE "
+            "FROM actors "
+            "WHERE id = ?",
             (id_to_delete,)
         )
         self.conn.commit()
