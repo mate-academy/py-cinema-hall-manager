@@ -1,5 +1,7 @@
 import sqlite3
 
+from typing import List
+
 from models import Actor
 
 
@@ -16,7 +18,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> None:
+    def all(self) -> List[Actor]:
         cinema_format_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
