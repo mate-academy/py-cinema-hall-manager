@@ -6,7 +6,7 @@ class ActorManager:
 
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            "C:/progects/py-actor-manager/app/cinema_file.sqlite"
+            "cinema_file.sqlite"
         )
         self.table_name = "actors"
 
