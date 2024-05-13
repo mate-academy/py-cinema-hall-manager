@@ -6,12 +6,12 @@ from app.models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("../cinema.sqlite")
-        self.table_name = "actors"
+        self._connection = sqlite3.connect("cinema.sqlite")
+        self.table_name = "actors "
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name } "
+            f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) VALUES (?, ?) ",
             (first_name, last_name)
         )
