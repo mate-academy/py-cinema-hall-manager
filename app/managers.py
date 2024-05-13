@@ -21,7 +21,10 @@ class ActorManager:
         )
         return [Actor(*actor) for actor in actor_cursor]
 
-    def update(self, id_to_update: int, new_f_name: str, new_l_name: str) -> None:
+    def update(self,
+               id_to_update: int,
+               new_f_name: str,
+               new_l_name: str) -> None:
         self._connection.execute(
             f"UPDATE actors  "
             "SET (first_name, last_name) = (?, ?) "
