@@ -14,7 +14,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             "SELECT * FROM cinema.sqlite.actors"
         )
