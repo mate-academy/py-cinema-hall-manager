@@ -16,7 +16,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -26,7 +26,8 @@ class ActorManager:
             self,
             id_to_update: int,
             first_name_: str,
-            last_name_: str) -> None:
+            last_name_: str
+    ) -> None:
         self._connection.execute(
             f" UPDATE {self.table_name} "
             f"SET first_name = (?), last_name = (?) "
