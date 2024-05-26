@@ -7,7 +7,6 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db")
         self._cursor = self._connection.cursor()
 
-  # create actors
     def create(self, first_name: str, last_name: str) -> None:
         self._cursor.execute("""
         INSERT INTO actors (first_name, last_name)
