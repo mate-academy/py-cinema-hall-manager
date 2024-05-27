@@ -10,9 +10,7 @@ class ActorManager:
     def create(self, first_name: str, last_name: str) -> None:
         self._cursor.execute("""
         INSERT INTO actors (first_name, last_name)
-        VALUES (?, ?)""",
-                             (first_name, last_name)
-                             )
+        VALUES (?, ?)""",(first_name, last_name))
 
         self._connection.commit()
 
