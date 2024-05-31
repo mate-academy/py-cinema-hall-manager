@@ -19,7 +19,7 @@ class ActorManager:
 
     def all(self) -> list[type(Actor)]:
         return [
-            Actor(*i) for i in self.actor_db_connect.execute(
+            Actor(*actor_item) for actor_item in self.actor_db_connect.execute(
                 "SELECT * FROM actors;"
             )
         ]
