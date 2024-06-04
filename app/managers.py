@@ -40,3 +40,4 @@ class ActorManager:
         )
 
         self._connection.commit()
+
