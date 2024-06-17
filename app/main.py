@@ -5,8 +5,8 @@ def main() -> None:
     manager = ActorManager()
 
     # Створення акторів
-    actor_id1 = manager.create('Роберт', 'Дауні-молодший')
-    actor_id2 = manager.create('Кріс', 'Гемсворт')
+    actor_id1 = manager.create("Роберт", "Дауні-молодший")
+    actor_id2 = manager.create("Кріс", "Гемсворт")
 
     # Список всіх акторів
     actors = manager.all()
@@ -15,7 +15,7 @@ def main() -> None:
         print(actor)
 
     # Оновлення актора
-    manager.update(actor_id1, first_name='Роберт', last_name='Дауні')
+    manager.update(actor_id1, first_name="Роберт", last_name="Дауні")
     updated_actors = manager.all()
     print("\nОновлений актор:")
     for actor in updated_actors:
@@ -29,5 +29,5 @@ def main() -> None:
         print(actor)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
