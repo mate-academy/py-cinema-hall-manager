@@ -1,13 +1,33 @@
-# from models import Actor
-# from managers import ActorManager
-#
-# if __name__ == "__main__":
-#     Actor.objects = ActorManager()
-#
-#     Actor.objects.create(first_name="Emma", last_name="Watson")
-#     Actor.objects.create(first_name="Daniel", last_name="Radclife")
-#     print(Actor.objects.all())
-#     Actor.objects.update(2, "Daniel", "Radcliffe")
-#     print(Actor.objects.all())
-#     Actor.objects.delete(1)
-#     print(Actor.objects.all())
+from managers import ActorManager
+
+
+def main() -> None:
+    manager = ActorManager()
+
+    # Створення акторів
+    actor_id1 = manager.create('Роберт', 'Дауні-молодший')
+    actor_id2 = manager.create('Кріс', 'Гемсворт')
+
+    # Список всіх акторів
+    actors = manager.all()
+    print("Всі актори:")
+    for actor in actors:
+        print(actor)
+
+    # Оновлення актора
+    manager.update(actor_id1, first_name='Роберт', last_name='Дауні')
+    updated_actors = manager.all()
+    print("\nОновлений актор:")
+    for actor in updated_actors:
+        print(actor)
+
+    # Видалення актора
+    manager.delete(actor_id2)
+    remaining_actors = manager.all()
+    print("\nЗалишилися актори після видалення:")
+    for actor in remaining_actors:
+        print(actor)
+
+
+if __name__ == '__main__':
+    main()
