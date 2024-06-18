@@ -8,4 +8,3 @@ if __name__ == "__main__":
     Actor.objects.create(first_name="Daniel", last_name="Radclife")
     Actor.objects.update(2, "Daniel", "Radcliffe")
     Actor.objects.delete(1)
-
