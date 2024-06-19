@@ -4,7 +4,7 @@ from typing import Any
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.conn = sqlite3.connect("identifier.sqlite")
         self.cursor = self.conn.cursor()
 
