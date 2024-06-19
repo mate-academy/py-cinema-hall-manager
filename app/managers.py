@@ -1,5 +1,6 @@
 import sqlite3
 from models import Actor
+from typing import Any
 
 
 class ActorManager:
@@ -7,14 +8,14 @@ class ActorManager:
         self.conn = sqlite3.connect("identifier.sqlite")
         self.cursor = self.conn.cursor()
 
-    def create(self, first_name: str, last_name: str):
+    def create(self, first_name: str, last_name: str) -> Any:
         query = ("INSERT INTO actor_manager (first_name, last_name)"
                  " VALUES (?, ?)")
         self.cursor.execute(query, (first_name, last_name))
         self.conn.commit()
         return self.cursor.lastrowid
 
-    def all(self):
+    def all(self) -> Any:
         query = ("SELECT id, first_name, last_name "
                  "FROM actor_manager")
         self.cursor.execute(query)
@@ -30,7 +31,7 @@ class ActorManager:
             actor_id: int,
             first_name: str,
             last_name: str
-    ):
+    ) -> Any:
         query = ("UPDATE actor_manager "
                  "SET first_name = ?, last_name = ? "
                  "WHERE id = ?")
@@ -40,7 +41,7 @@ class ActorManager:
         )
         self.conn.commit()
 
-    def delete(self, actor_id: int):
+    def delete(self, actor_id: int) -> Any:
         query = "DELETE FROM actor_manager WHERE id = ?"
         self.cursor.execute(query, (actor_id,))
         self.conn.commit()
