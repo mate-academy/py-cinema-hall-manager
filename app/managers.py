@@ -15,7 +15,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actor_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -35,10 +35,10 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def delete(self, id_to_delete: int) -> None:
+    def delete(self, actor_id: int) -> None:
         self._connection.execute(
             f"DELETE FROM {self.table_name} "
             f"WHERE id =?",
-            (id_to_delete,)
+            (actor_id,)
         )
         self._connection.commit()
