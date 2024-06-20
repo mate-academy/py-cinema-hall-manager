@@ -26,13 +26,13 @@ class ActorManager:
             Actor(*row) for row in actors_cursor
         ]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str) -> None:
+    def update(self, actor_id: int, new_first_name: str, new_last_name: str) -> None:
         if new_first_name and not new_last_name:
             self._connection.execute(
                 f"UPDATE {self.table_name} "
                 f"SET first_name = ? "
                 f"WHERE id = ? ",
-                (new_first_name, id_to_update)
+                (new_first_name, actor_id)
             )
 
         if new_last_name and not new_first_name:
@@ -40,7 +40,7 @@ class ActorManager:
                 f"UPDATE {self.table_name} "
                 f"SET last_name = ? "
                 f"WHERE id = ? ",
-                (new_last_name, id_to_update)
+                (new_last_name, actor_id)
             )
 
         if new_first_name and new_last_name:
@@ -48,7 +48,7 @@ class ActorManager:
                 f"UPDATE {self.table_name} "
                 f"SET first_name = ?, last_name = ? "
                 f"WHERE id = ?",
-                (new_first_name, new_last_name, id_to_update)
+                (new_first_name, new_last_name, actor_id)
             )
 
         self._connection.commit()
