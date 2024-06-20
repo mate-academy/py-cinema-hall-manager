@@ -27,8 +27,8 @@ class ActorManager:
     def update(
             self,
             id_to_update: int,
-            first_name: str = "",
-            last_name: str = ""
+            first_name: str,
+            last_name: str
     ) -> None:
         self._connection.execute(
             F"UPDATE {self.table_name} "
