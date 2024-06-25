@@ -1,4 +1,5 @@
 import sqlite3
+
 from models import Actor
 
 
@@ -22,12 +23,10 @@ class ActorManager:
         self._connection.commit()
         return Actor(cursor.lastrowid, first_name, last_name)
 
-    # RETRIEVE - R
     def all(self) -> list[Actor]:
         cursor = self._connection.execute("SELECT * FROM actors")
         return [Actor(*row) for row in cursor.fetchall()]
 
-    # UPDATE - U
     def update(self, actor_id: int, first_name: str, last_name: str) -> None:
         self._connection.execute(
             "UPDATE actors SET first_name = ?, last_name = ? WHERE id = ?",
@@ -35,7 +34,6 @@ class ActorManager:
         )
         self._connection.commit()
 
-    # DELETE - D
     def delete(self, actor_id: int) -> None:
         self._connection.execute(
             "DELETE FROM actors WHERE id = ?",
