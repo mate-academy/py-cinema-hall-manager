@@ -20,8 +20,7 @@ class ActorManager:
             f"SELECT * FROM {self.table_name}"
         )
         return [
-            Actor(id=actor_id, first_name=first_name, last_name=last_name)
-            for actor_id, first_name, last_name in actors_cursor
+            Actor(*row) for row in actors_cursor
         ]
 
     def update(self, actor_id: int, first_name: str, last_name: str) -> None:
