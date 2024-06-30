@@ -38,11 +38,8 @@ class ActorManager:
     def delete(self, actor_id: int) -> None:
         self._connection.execute(
             f"DELETE "
-            f"FROM {self.table_name} WHERE id = ? ",
+            f"FROM {self.table_name} "
+            f"WHERE id = ? ",
             (actor_id,)
         )
         self._connection.commit()
-
-
-manager = ActorManager()
-manager.update(1, "Asd", "123")
