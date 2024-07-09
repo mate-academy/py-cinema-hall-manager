@@ -1,11 +1,11 @@
 import sqlite3
 
-from models import Actor
+from app.models import Actor
 
 
 class ActorManager:
     def __init__(self):
-        self.connection = sqlite3.connect("cinema.sqlite")
+        self.connection = sqlite3.connect("../cinema1.sqlite")
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str):
@@ -26,6 +26,3 @@ class ActorManager:
         self.connection.execute(f"DELETE FROM {self.table_name} WHERE id = ?",
                                 (id_to_delete,))
         self.connection.commit()
-
-    def __del__(self):
-        self.connection.close()
