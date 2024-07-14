@@ -1,12 +1,12 @@
 from managers import ActorManager
 
 
-def main():
+def main() -> None:
     manager = ActorManager()
 
     # Створення нових акторів
-    manager.create('Leonardo', 'DiCaprio')
-    manager.create('Morgan', 'Freeman')
+    manager.create("Leonardo", "DiCaprio")
+    manager.create("Morgan", "Freeman")
 
     # Отримання всіх акторів
     actors = manager.all()
@@ -15,7 +15,7 @@ def main():
         print(actor)
 
     # Оновлення інформації про актора
-    manager.update(1, new_first_name='Leonard', new_last_name='DiCaprio')
+    manager.update(1, new_first_name="Leonard", new_last_name="DiCaprio")
 
     # Видалення актора
     manager.delete(2)
@@ -27,5 +27,5 @@ def main():
         print(actor)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
