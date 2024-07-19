@@ -38,15 +38,3 @@ class ActorManager:
             (id_to_delete,)
         )
         self._connection.commit()
-
-    def delete_all(self) -> None:
-        self._connection.execute(
-            f"DELETE FROM {self._table_name} "
-        )
-        self._connection.commit()
-
-    def reset(self) -> None:
-        self._connection.execute(
-            f"VACUUM"
-        )
-        self._connection.commit()
