@@ -21,7 +21,12 @@ class ActorManager:
         )
         return [Actor(*row) for row in models_manager_cursor]
 
-    def update(self, id_to_update: int, first_name: str, last_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            first_name: str,
+            last_name: str
+    ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? WHERE id = ?",
