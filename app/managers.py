@@ -27,11 +27,10 @@ class ActorManager:
         Returns:
             List[Actor]: A list of Actor instances.
         """
-        query = "SELECT id, first_name, last_name FROM actors"
-        self.cursor.execute(query)
-        results = self.cursor.fetchall()
-        return [Actor(id=row[0], first_name=row[1],
-                      last_name=row[2]) for row in results]
+        actor_cursor = self.connection.execute(
+            f"SELECT * FROM {self.table_name}"
+        )
+        return [Actor(*row) for row in actor_cursor]
 
     def update(self, actor_id: int, first_name: str, last_name: str) -> None:
         """Update an actor entry in the database.
