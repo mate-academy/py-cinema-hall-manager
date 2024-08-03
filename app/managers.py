@@ -21,19 +21,15 @@ class ActorManager:
 
     def update(self, actor_id_to_update: int, new_first_name: str,
                new_last_name: str) -> None:
-        self._connection.execute(f"UPDATE {self.table_name} "
-                                 "SET "
-                                 "first_name = ?,"
-                                 "last_name = ?"
-                                 "WHERE id = ?",
-                                 (new_first_name,
-                                  new_last_name,
-                                  actor_id_to_update))
-
+        self._connection.execute(
+            f"UPDATE {self.table_name} "
+            "SET first_name = ?, last_name = ? WHERE id = ?",
+            (new_first_name, new_last_name, actor_id_to_update)
+        )
         self._connection.commit()
 
     def delete(self, actor_id_to_delete: int) -> None:
-        self._connection.execute(f"DELETE FROM {self.table_name} "
-                                 "WHERE id = ?",
-                                 (actor_id_to_delete,))
-        self._connection.commit()
+        self._connection.execute(
+            f"DELETE FROM {self.table_name} WHERE id = ?",
+            (actor_id_to_delete,)
+        )
