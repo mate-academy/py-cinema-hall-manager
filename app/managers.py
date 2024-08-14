@@ -25,7 +25,9 @@ class ActorManager:
             rows.append(row)
         return rows
 
-    def update(self, id_to_update: int, first_name: str, last_name: str,) -> None:
+    def update(
+            self, id_to_update: int, first_name: str, last_name: str,
+    ) -> None:
         self.connection.execute(
             f"UPDATE {self.table_name} "
             "SET first_name = ?, last_name = ? "
