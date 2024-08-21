@@ -5,10 +5,10 @@ from models import Actor
 
 class ActorManager:
     def __init__(self):
-        self._connection = sqlite3.connect('actors.db')
+        self._connection = sqlite3.connect("actors.db")
         self.create_table()
 
-    def create_table(self):
+    def create_table(self) -> None:
         self._connection.execute(
             """
             CREATE TABLE IF NOT EXISTS actors (
@@ -20,14 +20,14 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def create(self, first_name: str, last_name: str):
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             "INSERT INTO actors (first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
 
-    def all(self):
+    def all(self) -> list:
         cinema_cursor = self._connection.execute(
             "SELECT * FROM actors"
         )
@@ -35,7 +35,7 @@ class ActorManager:
             Actor(*row) for row in cinema_cursor
         ]
 
-    def update(self, id_: int, new_first_name: str, new_last_name: str):
+    def update(self, id_: int, new_first_name: str, new_last_name: str) -> None:
         self._connection.execute(
             "UPDATE actors "
             "SET first_name = ?, last_name = ? "
@@ -44,7 +44,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def delete(self, id_delete: int):
+    def delete(self, id_delete: int) -> None:
         self._connection.execute(
             "DELETE FROM actors WHERE id = ?",
             (id_delete,)
