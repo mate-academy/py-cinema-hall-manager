@@ -4,12 +4,12 @@ from models import Actor
 
 
 class ActorManager():
-    def __init__(self):
+    def __init__(self) -> None:
         self._connection = sqlite3.connect("../cinema.sqlite")
         self.table_name = "actors"
         self.create_table()
 
-    def create_table(self):
+    def create_table(self) -> None:
         with self._connection:
             self._connection.execute(f"""
             CREATE TABLE IF NOT EXISTS {self.table_name} (
@@ -19,14 +19,17 @@ class ActorManager():
             )
             """)
 
-    def create(self, first_name, last_name):
+    def create(self, first_name: str, last_name: str) -> None:
         with self._connection:
             self._connection.execute(
-                f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)",
+                f"""
+                    INSERT INTO {self.table_name} (first_name, last_name)
+                    VALUES (?, ?)
+                """,
                 (first_name, last_name)
             )
 
-    def all(self):
+    def all(self) -> list[Actor]:
         with self._connection:
             read_actors = self._connection.execute(
                 f"SELECT * FROM {self.table_name}"
@@ -36,14 +39,16 @@ class ActorManager():
             Actor(*row) for row in read_actors
         ]
 
-    def update(self, id, first_name, last_name):
+    def update(self, id: int, first_name: str, last_name: str) -> None:
         with self._connection:
             self._connection.execute(
-                f"UPDATE {self.table_name} SET first_name = ?, last_name = ? WHERE id = ?",
+                f"""
+                    UPDATE {self.table_name} SET first_name = ?, last_name = ? WHERE id = ?
+                """,
                 (first_name, last_name, id)
             )
 
-    def delete(self, id):
+    def delete(self, id: int) -> None:
         with self._connection:
             self._connection.execute(
                 f"DELETE FROM {self.table_name} WHERE id = ?",
