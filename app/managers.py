@@ -58,5 +58,5 @@ class ActorManager:
         """, (actor_id,))
         self.connection.commit()
 
-    def __del__(self):
+    def __del__(self) -> None:
         self.connection.close()
