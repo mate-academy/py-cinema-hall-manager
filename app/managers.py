@@ -36,7 +36,7 @@ class ActorManager:
     def delete(self, id_delete: int) -> None:
         self._connection.execute(
             f"""
-            DELETE 
+            DELETE
             FROM {self.table}
             WHERE id = ?
             """,
