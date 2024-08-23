@@ -1,5 +1,64 @@
 # Actor manager
 
+### Description
+In this task, you should create a manager for the dataclass `Actor`.
+
+### Objectives
+- Implement a dataclass `Actor` with attributes: `id`, `first_name`, `last_name`
+- Create a database `cinema` with a table `actors`
+- Implement a manager `ActorManager` with CRUD operations
+
+### Details
+#### 1. `Actor` dataclass
+- Create a dataclass `Actor` with attributes:
+    - `id` - unique identifier for each actor
+    - `first_name` - actor's first name
+    - `last_name` - actor's last name
+
+#### 2. Create a database
+- Create a database `cinema` where will be stored entries with data about different actors and actresses.
+- Create a table `actors` with corresponding columns.
+
+#### 3. `ActorManager` class
+- Create a class `ActorManager` that should provide **CRUD** operations.
+- The manager should create a connection to the database inside the constructor.
+- Implement the following methods:
+    - `create` - a method that creates a new entry in the `actors` table with given properties.
+    - `all` - a method that returns a list of `Actor` instances from DB
+    - `update` - a method that updates properties for entry with given `id`
+    - `delete` - a method that deletes entry with given `id` from DB
+
+#### 4. Test
+- Test different methods in the `main.py` module.
+
+### Example
+```python
+actor_manager = ActorManager()
+actor_manager.create(first_name='John', last_name='Doe')
+actor_manager.create(first_name='Jane', last_name='Doe')
+
+actors = actor_manager.all()
+for actor in actors:
+    print(actor.id, actor.first_name, actor.last_name)
+# Output:
+# 1 John Doe
+# 2 Jane Doe
+
+actor_manager.update(1, first_name='Bob')
+actor_manager.delete(2)
+
+actors = actor_manager.all()
+for actor in actors:
+    print(actor.id, actor.first_name, actor.last_name)
+# Output:
+# 1 Bob Doe
+```
+
+### Hints
+- You can use the `sqlite3` module to work with SQLite databases.
+- Use the `sqlite3.connect` method to create a connection to the database.
+- Use the `cursor` method to create a cursor object to execute
+
 Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before starting.
 
 In this task, you should create a manager for the dataclass `Actor`.
