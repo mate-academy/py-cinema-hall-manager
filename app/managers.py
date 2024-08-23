@@ -7,7 +7,7 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.db")
         self.table_name = "actors"
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         literary_format_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -16,9 +16,11 @@ class ActorManager:
         ]
 
     def create(self, first_name: str, last_name: str) -> None:
-        self._connection.execute(
-            f"INSERT INTO {self.table_name} (first_name, last_name) "
-            f"VALUES (?, ?)",
+
+        self._connection.execute(f"""
+            INSERT INTO {self.table_name} (first_name, last_name) 
+            VALUES (?, ?)
+            """,
             (first_name, last_name)
         )
         self._connection.commit()
@@ -29,10 +31,11 @@ class ActorManager:
             new_actor_name: str,
             new_actor_surname: str
     ) -> None:
-        self._connection.execute(
-            f"UPDATE {self.table_name} "
-            "SET first_name = ?, last_name = ? "
-            "WHERE id = ? ",
+        self._connection.execute(f"""
+            UPDATE {self.table_name} 
+            SET first_name = ?, last_name = ? 
+            WHERE id = ? 
+                """,
             (new_actor_name, new_actor_surname, id_to_update)
         )
         self._connection.commit()
