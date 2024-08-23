@@ -8,22 +8,28 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.sqlite")
         self.table_name = "actors"
 
-    def all(self) -> list:
-        cursor = self._connection.execute(f"SELECT * FROM {self.table_name}")
-        rows = cursor.fetchall()
-        return [Actor(*row) for row in rows]
+    def all(self) -> list[Actor]:
+        return [
+            Actor(*row)
+            for row in self._connection.execute(
+                f"SELECT * FROM {self.table_name}"
+            )
+        ]
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, last_name) "
-            f"VALUES (?, ?)",
+            f"""
+            INSERT INTO {self.table_name} 
+            (first_name, last_name) 
+            VALUES (?, ?)
+            """,
             (first_name, last_name)
         )
         self._connection.commit()
 
     def update(
-            self, id_to_update: int,
+            self,
+            id_to_update: int,
             new_first_name: str,
             new_last_name: str
     ) -> None:
