@@ -37,7 +37,7 @@ class ActorManager:
     ) -> None:
         self._connection.execute(
             f"""
-            UPDATE {self.table_name} 
+            UPDATE {self.table_name}
             SET first_name=?, last_name=?
             WHERE id=?
             """,
