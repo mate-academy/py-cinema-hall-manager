@@ -28,7 +28,7 @@ class ActorManager:
             UPDATE {self.table}
             SET first_name = ?, last_name = ?
             WHERE id = ?
-            """,
+""",
             (first_name, last_name, id_updated)
         )
         self._connection.commit()
