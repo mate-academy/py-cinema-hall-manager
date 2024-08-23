@@ -8,7 +8,7 @@ class ActorManager:
         self._connection = sqlite3.connect("cinema.sqlite")
         self._table_name = "actors"
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         cinema_cursor = self._connection.execute(
             f"SELECT * FROM {self._table_name}"
         )
@@ -16,8 +16,10 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self._table_name} (first_name, last_name) "
-            f"VALUES (?, ?)",
+            f"""
+                INSERT INTO {self._table_name} (first_name, last_name)
+                VALUES (?, ?)
+            """,
             (first_name, last_name)
         )
         self._connection.commit()
@@ -28,28 +30,13 @@ class ActorManager:
             first_name: str = None,
             last_name: str = None
     ) -> None:
-        fields = []
-        values = []
-
-        if first_name:
-            fields.append("first_name = ?")
-            values.append(first_name)
-
-        if last_name:
-            fields.append("last_name = ?")
-            values.append(last_name)
-
-        if not fields:
-            raise ValueError("Provide at least one value to update")
-
-        set_items = ", ".join(fields)
-        values.append(update_id)
-
         self._connection.execute(
-            f"UPDATE {self._table_name} "
-            f"SET {set_items} "
-            f"WHERE id = ?",
-            tuple(values)
+            f"""
+                UPDATE {self._table_name} 
+                SET first_name = ?, last_name = ?
+                WHERE id = ?
+            """,
+            (first_name, last_name, update_id)
         )
         self._connection.commit()
 
