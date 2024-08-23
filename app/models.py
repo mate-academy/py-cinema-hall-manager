@@ -1,5 +1,7 @@
+import sqlite3
 from typing import List
 from models import Actor
+
 
 class ActorManager:
     def __init__(self) -> None:
