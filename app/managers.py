@@ -9,14 +9,13 @@ class ActorManager:
         self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
-        self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, last_name) VALUES (?, ?)",
-            (first_name, last_name)
-        )
+        self._connection.execute(f"""
+            INSERT INTO {self.table_name}
+            (first_name, last_name) VALUES (?, ?)
+        """, (first_name, last_name))
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         cinema_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -28,12 +27,11 @@ class ActorManager:
             new_first_name: str,
             new_last_name: str
     ) -> None:
-        self._connection.execute(
-            f"UPDATE {self.table_name} "
-            "SET first_name = ?, last_name = ? "
-            "WHERE id = ? ",
-            (new_first_name, new_last_name, id_to_update)
-        )
+        self._connection.execute(f"""
+            UPDATE {self.table_name}
+            SET first_name = ?, last_name = ?
+            WHERE id = ?
+        """, (new_first_name, new_last_name, id_to_update))
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
