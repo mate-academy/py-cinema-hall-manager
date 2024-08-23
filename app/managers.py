@@ -19,9 +19,7 @@ class ActorManager:
         actor_cursor = self._connection.execute(
             f"SELECT * FROM {self.table}"
         )
-        return [
-            Actor(*row) for row in actor_cursor
-        ]
+        return [Actor(*row) for row in actor_cursor]
 
     def update(self, id_updated: int, first_name: str, last_name: str) -> None:
         self._connection.execute(f"""
