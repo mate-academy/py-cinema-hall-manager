@@ -3,7 +3,6 @@
 *.iml
 .env
 .DS_Store
-venAnother duty of ORM is to change the database schema: add, delete, and modify tables. As a rule, this is done not on pure SQL but with the help of a special language. This allows you to work with ORM without worrying about the peculiar features of specific databases.v/
-.pytest_cache/
+venv/
 **__pycache__/
 **db.sqlite3
