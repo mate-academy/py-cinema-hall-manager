@@ -5,8 +5,9 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("actors.db")
+        self._connection = sqlite3.connect("cinema.db")
         self.create_table()
+        self.table_name = "actors"
 
     def create_table(self) -> None:
         self._connection.execute(
@@ -22,7 +23,8 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            "INSERT INTO actors (first_name, last_name) VALUES (?, ?)",
+            f""""
+            "INSERT INTO actors (first_name, last_name) VALUES (?, ?)""",
             (first_name, last_name)
         )
         self._connection.commit()
@@ -42,16 +44,18 @@ class ActorManager:
             new_last_name: str
     ) -> None:
         self._connection.execute(
+            f"""
             "UPDATE actors "
             "SET first_name = ?, last_name = ? "
-            "WHERE id = ?",
+            "WHERE id = ?""",
             (new_first_name, new_last_name, id_)
         )
         self._connection.commit()
 
     def delete(self, id_delete: int) -> None:
         self._connection.execute(
-            "DELETE FROM actors WHERE id = ?",
+            f"""
+            "DELETE FROM actors WHERE id = ?""",
             (id_delete,)
         )
         self._connection.commit()
