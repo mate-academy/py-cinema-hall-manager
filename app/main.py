@@ -9,6 +9,5 @@
 #     print(Actor.objects.all())
 #     Actor.objects.update(2, "Daniel", "Radcliffe")
 #     print(Actor.objects.all())
-#     Actor.objects.delete(3)
-#     Actor.objects.delete(4)
+#     Actor.objects.delete(1)
 #     print(Actor.objects.all())
