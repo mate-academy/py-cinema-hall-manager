@@ -10,29 +10,35 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} VALUES (?, ?, ?) ",
-            (None, first_name, last_name)
+            f"""
+            INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)
+                """,
+            (first_name, last_name)
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         reader = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
         return [Actor(*row) for row in reader]
 
-    def update(self, key: int, f_name: str, l_name: str) -> None:
+    def update(self, key: int, name: str, surname: str) -> None:
         self._connection.execute(
-            f"UPDATE {self.table_name} "
-            f"SET first_name=?, last_name =? "
-            f"WHERE id=? ",
-            (f_name, l_name, key)
+            f"""
+            UPDATE {self.table_name} 
+            SET first_name=?, last_name =? 
+            WHERE id=? 
+            """,
+            (name, surname, key)
         )
         self._connection.commit()
 
-    def delete(self, key: int) -> None:
+    def delete(self, id_: int) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} "
-            f"WHERE id=? ",
-            (key,)
+            f"""
+            DELETE FROM {self.table_name} 
+            WHERE id=? 
+            """,
+            (id_,)
         )
