@@ -29,7 +29,7 @@ class ActorManager:
             UPDATE {self.table_name} 
             SET first_name=?, last_name =? 
             WHERE id=? 
-            """,
+                """,
             (name, surname, key)
         )
         self._connection.commit()
@@ -39,6 +39,6 @@ class ActorManager:
             f"""
             DELETE FROM {self.table_name} 
             WHERE id=? 
-            """,
+                """,
             (id_,)
         )
