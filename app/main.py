@@ -1,5 +1,3 @@
-import os
-
 from models import Actor
 from managers import ActorManager
 
