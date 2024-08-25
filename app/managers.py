@@ -6,7 +6,6 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        os.chdir(r"C:\projects\projects\py-actor-manager")
         self._connection = sqlite3.connect("cinema_db.sqlite")
         self.table_name = "actors"
 
