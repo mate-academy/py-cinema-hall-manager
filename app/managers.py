@@ -1,12 +1,14 @@
 import sqlite3
+
 import os
+
 from models import Actor
 
 
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            os.path.join(os.path.dirname(__file__), "identifier.sqlite")
+            os.path.join(os.path.dirname(__file__), "cinema.sqlite")
         )
         self.table_name = "actors"
 
@@ -23,7 +25,8 @@ class ActorManager:
     def all(self) -> None:
         actor_manager_cursor = self._connection.execute(
             f"""
-            SELECT * FROM {self.table_name}
+            SELECT *
+            FROM {self.table_name}
             """
         )
         return [
