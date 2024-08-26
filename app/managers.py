@@ -12,7 +12,7 @@ class ActorManager:
     def _create_table(self) -> None:
         self._connection.execute(
             f"""CREATE TABLE IF NOT EXISTS {self.table_name} (
-                id INTEGER PRIMARY KEY AUTOINCREMENT, first_name 
+                id INTEGER PRIMARY KEY AUTOINCREMENT, first_name
                 TEXT NOT NULL, last_name TEXT NOT NULL)"""
         )
         self._connection.commit()
@@ -23,7 +23,7 @@ class ActorManager:
         last_name: str
     ) -> None:
         self._connection.execute(
-            f"""INSERT INTO {self.table_name} 
+            f"""INSERT INTO {self.table_name}
             (first_name, last_name)
             VALUES (?, ?)""",
             (first_name, last_name)
@@ -43,8 +43,8 @@ class ActorManager:
         last_name: str
     ) -> None:
         self._connection.execute(
-            f"""UPDATE {self.table_name} 
-            SET first_name = ?, last_name = ? 
+            f"""UPDATE {self.table_name}
+            SET first_name = ?, last_name = ?
             WHERE id = ?""",
             (first_name, last_name, actor_id)
         )
