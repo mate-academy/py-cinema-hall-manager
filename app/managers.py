@@ -10,10 +10,10 @@ class ActorManager:
 
     def _create_table(self) -> None:
         self._connection.execute(
-            f"CREATE TABLE IF NOT EXISTS {self.table_name} ("
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            "first_name TEXT NOT NULL, "
-            "last_name TEXT NOT NULL"
+            f"""CREATE TABLE IF NOT EXISTS {self.table_name} ("""
+            """id INTEGER PRIMARY KEY AUTOINCREMENT, """
+            """first_name TEXT NOT NULL, """
+            """last_name TEXT NOT NULL"""
             ")"
         )
         self._connection.commit()
@@ -24,15 +24,16 @@ class ActorManager:
             last_name: str
     ) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.table_name} "
-            f"(first_name, last_name) VALUES (?, ?)",
+            f"""INSERT INTO {self.table_name} ("""
+            """first_name, last_name) """
+            """VALUES (?, ?)""",
             (first_name, last_name)
         )
         self._connection.commit()
 
-    def all(self) -> None:
+    def all(self) -> list[Actor]:
         cursor = self._connection.execute(
-            f"SELECT * FROM {self.table_name}"
+            f"""SELECT * FROM {self.table_name}"""
         )
         return [Actor(*row) for row in cursor]
 
@@ -43,8 +44,9 @@ class ActorManager:
             last_name: str
     ) -> None:
         self._connection.execute(
-            f"UPDATE {self.table_name} "
-            f"SET first_name = ?, last_name = ? WHERE id = ?",
+            f"""UPDATE {self.table_name} SET """
+            """first_name = ?, last_name = ? """
+            """WHERE id = ?""",
             (first_name, last_name, actor_id)
         )
         self._connection.commit()
@@ -54,7 +56,8 @@ class ActorManager:
             actor_id: int
     ) -> None:
         self._connection.execute(
-            f"DELETE FROM {self.table_name} WHERE id = ?",
+            f"""DELETE FROM {self.table_name} """
+            """WHERE id = ?""",
             (actor_id,)
         )
         self._connection.commit()
