@@ -21,7 +21,12 @@ class ActorManager:
 
         return [Actor(*row) for row in actor]
 
-    def update(self, actor_id: int, first_name: Optional[str] = None, last_name: Optional[str] = None) -> None:
+    def update(
+            self,
+            actor_id: int,
+            first_name: Optional[str] = None,
+            last_name: Optional[str] = None
+    ) -> None:
         if first_name:
             self._connection.execute(
                 f"""UPDATE {self.table_name}
