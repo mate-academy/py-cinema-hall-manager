@@ -1,6 +1,9 @@
 import sqlite3
-from models import Actor
+
 from typing import Optional
+
+from models import Actor
+
 
 
 class ActorManager:
