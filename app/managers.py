@@ -7,7 +7,7 @@ class ActorManager:
 
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            "cinema.sqlite"
+            "../cinema.sqlite"
         )
         self.table_name = "actors"
 
