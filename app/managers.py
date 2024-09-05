@@ -7,7 +7,7 @@ class ActorManager:
 
     def __init__(self) -> None:
         self._connection = sqlite3.connect(
-            "C:/Users/taras/projects/py-actor-manager/cinema.sqlite"
+            "cinema.sqlite"
         )
         self.table_name = "actors"
 
@@ -40,7 +40,6 @@ class ActorManager:
             f"WHERE id=?",
             (first_name, last_name, id_to_update)
         )
-
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
