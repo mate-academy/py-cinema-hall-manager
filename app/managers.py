@@ -1,4 +1,5 @@
 import sqlite3
+
 from models import Actor
 
 
@@ -19,7 +20,7 @@ class ActorManager:
         )
         self._connection.commit()
 
-    def all(self) -> list:
+    def all(self) -> list[Actor]:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
@@ -45,15 +46,5 @@ class ActorManager:
         self._connection.execute(
             f"DELETE FROM {self.table_name} WHERE id = ?",
             (id_to_delete,)
-        )
-        self._connection.commit()
-
-    def reset_actors(self) -> None:
-        self._connection.execute(
-            f"DELETE FROM {self.table_name}"
-        )
-        self._connection.execute(
-            f"UPDATE SQLITE_SEQUENCE SET SEQ = 0 "
-            f"WHERE NAME = '{self.table_name}'"
         )
         self._connection.commit()
