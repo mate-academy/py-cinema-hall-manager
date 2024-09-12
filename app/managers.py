@@ -7,7 +7,7 @@ class ActorManager:
 
     def __init__(self) -> None:
         # Connection to DB
-        self.connection = sqlite3.connect("app/sinima.sqlite")
+        self.connection = sqlite3.connect("сinema.sqlite")
         self.cursor = self.connection.cursor()
 
     def create(self, first_name: str, last_name: str) -> None:
