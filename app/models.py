@@ -1,0 +1,5 @@
+class Actor:
+    def __init__(self, id_: int, first_name: str, last_name : str):
+        self.id = id_
+        self.first_name = first_name
+        self.last_name = last_name
