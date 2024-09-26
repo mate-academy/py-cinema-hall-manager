@@ -1,13 +1,12 @@
 import sqlite3
 
+
 from models import Actor
 
 
 class ActorManager:
     def __init__(self) -> None:
-        self.conn = sqlite3.connect(
-            r"E:\PyCharmProjects\py-actor-manager\cinema_db.sqlite"
-        )
+        self.conn = sqlite3.connect("cinema_db.sqlite")
         self.cursor = self.conn.cursor()
 
     def create(self, first_name: str, last_name: str) -> None:
