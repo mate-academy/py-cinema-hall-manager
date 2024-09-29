@@ -1,5 +1,5 @@
 import sqlite3
-# from models import Actor
+from models import Actor
 
 
 class ActorManager:
@@ -23,9 +23,7 @@ class ActorManager:
 
     def all(self) -> None:
         cursor = self._connection.execute("SELECT * FROM actors")
-        for row in cursor:
-            print(row)
-        # return [Actor(*row) for row in cursor]
+        return [Actor(*row) for row in cursor]
 
     def update(self, id: int, new_first_name: str, new_last_name: str) -> None:
         self._connection.execute("UPDATE actors "
