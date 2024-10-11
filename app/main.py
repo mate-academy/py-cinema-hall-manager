@@ -1,5 +1,5 @@
-from modules.models import Actor
-from modules.managers import ActorManager
+# from modules.models import Actor
+# from modules.managers import ActorManager
 
 # if __name__ == "__main__":
 #     Actor.objects = ActorManager()
