@@ -10,9 +10,10 @@ class ActorManager:
         self._connection = sqlite3.connect(path)
         self.table_name = "actors"
 
-    def create(self, first_name, last_name) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.cursor().execute(
-            f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self.table_name} "
+            f"(first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
@@ -24,9 +25,16 @@ class ActorManager:
         self._connection.commit()
         return [Actor(*row) for row in actor_cursor]
 
-    def update(self, id_to_update: int, first_name: str, last_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            first_name: str,
+            last_name: str
+    ) -> None:
         self._connection.cursor().execute(
-            f"UPDATE {self.table_name} SET first_name=?, last_name=? WHERE id=?",
+            f"UPDATE {self.table_name} "
+            f"SET first_name=?, last_name=? "
+            f"WHERE id=?",
             (first_name, last_name, id_to_update)
         )
         self._connection.commit()
