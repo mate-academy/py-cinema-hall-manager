@@ -17,7 +17,7 @@ class ActorManager:
 
         self.db_connection.commit()
 
-    def read_all(self) -> list:
+    def all(self) -> list:
         list_of_actors = self.db_connection.execute(f"SELECT * FROM"
                                                     f" {self.table_name}")
         return [Actor(*i) for i in list_of_actors]
@@ -28,7 +28,7 @@ class ActorManager:
                id_to_update: int) -> None:
         self.db_connection.execute(
             f"UPDATE {self.table_name}"
-            "SET first_name = ?, last_name = ? WHERE id = ?",
+            " SET first_name = ?, last_name = ? WHERE id = ?",
             (new_first_name, new_last_name, id_to_update)
         )
 
