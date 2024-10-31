@@ -44,3 +44,4 @@ class ActorManager:
             f"WHERE id=?",
             (id_to_delete,)
         )
+        self.connection.commit()
