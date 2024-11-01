@@ -3,9 +3,9 @@ import sqlite3
 
 class ActorManager:
     def __init__(self) -> None:
-        self._conection = sqlite3.connect(r'D:\Games\cinema.db')
+        self._conection = sqlite3.connect(r"D:\Games\cinema.db")
 
-    def all(self):
+    def all(self) -> list:
         actors_data = self._conection.execute(
             "SELECT * FROM actors"
         )
@@ -19,7 +19,7 @@ class ActorManager:
         )
         self._conection.commit()
 
-    def update(self, id_: int, new_name: str, new_surname) -> None:
+    def update(self, id_: int, new_name: str, new_surname: str) -> None:
         self._conection.execute(
             "UPDATE actors "
             "SET (first_name, last_name) = (?, ?) "
