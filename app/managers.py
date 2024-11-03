@@ -3,6 +3,7 @@ import sqlite3
 from models import Actor
 
 
+# lol
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema.sqlite")
