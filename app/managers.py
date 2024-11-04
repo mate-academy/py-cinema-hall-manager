@@ -52,7 +52,7 @@ class ActorManager:
         values.append(actor_id)
         try:
             self._connection.execute(
-                f"UPDATE actors SET {", ".join(fields)} WHERE id = ?",
+                f"UPDATE actors SET {', '.join(fields)} WHERE id = ?",
                 values
             )
             self._connection.commit()
