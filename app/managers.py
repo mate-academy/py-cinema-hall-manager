@@ -6,9 +6,8 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect('../cinema.sqlite')
-        self.table_name = 'actors'
-
+        self._connection = sqlite3.connect("../cinema.sqlite")
+        self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
@@ -18,7 +17,6 @@ class ActorManager:
         )
         self._connection.commit()
 
-
     def all(self) -> List[Actor]:
         cinema_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
@@ -26,7 +24,6 @@ class ActorManager:
         return [
             Actor(*row) for row in cinema_cursor
         ]
-
 
     def update(
         self, id_to_update: int, new_first_name: str, new_last_name: str
@@ -37,7 +34,6 @@ class ActorManager:
             (new_first_name, new_last_name, id_to_update),
         )
         self._connection.commit()
-
 
     def delete(self, id_to_delete: int) -> None:
         self._connection.execute(
