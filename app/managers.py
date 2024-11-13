@@ -7,6 +7,15 @@ class ActorManager:
         self._connect = sqlite3.connect("cinema.sqlite")
         self.table_name = "actors"
 
+    def start(self, first_name: str, last_name: str) -> None:
+        self._connect.execute(
+            f"CREATE TABLE {self.table_name} ("
+            f" id INTEGER PRIMARY KEY "
+            f"first_name TEX"
+            f"last_name TEXT"
+            f");"
+        )
+
     def create(self, first_name: str, last_name: str) -> None:
         self._connect.execute(
             f"INSERT INTO {self.table_name} "
@@ -15,6 +24,7 @@ class ActorManager:
         )
 
         self._connect.commit()
+        self._connect.close()
 
     def all(self) -> list:
         info = self._connect.execute(
@@ -33,6 +43,7 @@ class ActorManager:
         )
 
         self._connect.commit()
+        self._connect.close()
 
     def delete(self, id_: int) -> None:
         self._connect.execute(
@@ -41,3 +52,4 @@ class ActorManager:
         )
 
         self._connect.commit()
+        self._connect.close()

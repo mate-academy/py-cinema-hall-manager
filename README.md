@@ -16,7 +16,7 @@ Create a table `actors` with corresponding columns.
 Now, you are ready to create a manager.
 
 #### 3. Create manager inside `managers.py` module
-Create `ActorManager` class that should provide **CRUD** operations. 
+Create `_ActorManager` class that should provide **CRUD** operations. 
 It should create a connection to the database inside the constructor.
 The manager should have the following methods:
 - `create` - a method that creates a new entry in the `actors` table
