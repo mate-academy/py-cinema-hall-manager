@@ -1,11 +1,12 @@
 import sqlite3
 from models import Actor
+import os
 
 
 class ActorManager:
     def __init__(self) -> None:
         self.connection = sqlite3.connect(
-            "d:/PyProjects/py-actor-manager/cinema.sqlite"
+            os.path.dirname(os.getcwd()) + "/cinema.sqlite"
         )
         self.table = "actors"
 
