@@ -6,9 +6,9 @@ from models import Actor
 class ActorManager:
     def __init__(self):
         self._connection = sqlite3.connect("cinema.sqlite")
-        self.table_name = "authors"
+        self.table_name = "actors"
 
-    def create(self, authors: str):
+    def create(self, first_name: str, last_name: str):
         self._connection.execute(
             f"INSERT INTO {self.table_name} (format) VALUES (?)",
             (format_,)
@@ -24,12 +24,12 @@ class ActorManager:
             Actor(*row) for row in authors_cursor
         ]
 
-    def update(self, id_to_update: int, new_format: str):
+    def update(self, id_to_update: int, first_name: str, last_name: str):
         self._connection.execute(
             f"UPDATE {self.table_name} "
             f"SET format = ? "
             "WHERE id = ?",
-            (new_format, id_to_update)
+            (first_name, last_name, id_to_update)
         )
         self._connection.commit()
 
