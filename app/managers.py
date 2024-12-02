@@ -11,7 +11,8 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
-            f"INSERT INTO {self.data_base} (first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self.data_base} "
+            f"(first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self._connection.commit()
@@ -26,7 +27,7 @@ class ActorManager:
         self._connection.execute(
             f"UPDATE {self.data_base} "
             f"SET first_name = ?, last_name = ? "
-            f"WHERE id = ?;",
+            f"WHERE id = ? ",
             (first_name, last_name, pk)
         )
         self._connection.commit()
