@@ -19,7 +19,7 @@ class ActorManager:
 
 # RETRIEVE - R
     def all(self) -> list:
-        actors.cursor = self._connection.execute(
+        actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
         return [
