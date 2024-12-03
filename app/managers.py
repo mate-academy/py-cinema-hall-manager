@@ -21,6 +21,7 @@ class ActorManager:
 # RETRIEVE - R
 
     def all(self) -> list:
+
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
