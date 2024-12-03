@@ -1,7 +1,7 @@
 from models import Actor
 from managers import ActorManager
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Actor.objects = ActorManager()
 
     Actor.objects.create(first_name="Tom", last_name="Henks")

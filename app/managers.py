@@ -2,13 +2,14 @@ import sqlite3
 
 from models import Actor
 
+
 class ActorManager:
-    def __init__(self):
-        self._connection =sqlite3.connect("../cinema.sqlite")
+    def __init__(self) -> None:
+        self._connection = sqlite3.connect("../cinema.sqlite")
         self.table_name = "actors"
 
 # CREATE - C
-    def create(self, first_name: str, last_name:str) -> None:
+    def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
             f"INSERT INTO {self.table_name} "
             f"(first_name, last_name) VALUES (?, ?)",
@@ -18,6 +19,7 @@ class ActorManager:
 
 
 # RETRIEVE - R
+
     def all(self) -> list:
         actors_cursor = self._connection.execute(
             f"SELECT * FROM {self.table_name}"
