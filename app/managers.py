@@ -20,7 +20,7 @@ class ActorManager:
             f"SELECT * FROM {self.table_name}"
         )
         return [
-        Actor(*row) for row in actor_cursor
+            Actor(*row) for row in actor_cursor
         ]
 
     def update(self, actor_id: int,
