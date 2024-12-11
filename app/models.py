@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-import sqlite3
 
 @dataclass
 class Actor:
