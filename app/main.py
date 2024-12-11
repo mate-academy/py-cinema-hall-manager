@@ -1,5 +1,5 @@
 from models import Actor
-ч
+
 from managers import ActorManager
 
 if __name__ == "__main__":
