@@ -17,7 +17,7 @@ class ActorManager:
         cursor.execute("SELECT * FROM actors")
         return [Actor(*row) for row in cursor.fetchall()]
 
-    def update(self, first_name: str, last_name: str, id: int) -> None:
+    def update(self, id: int, first_name: str, last_name: str) -> None:
         cursor = self.conn.cursor()
         cursor.execute("UPDATE actors SET first_name = ?, last_name = ?"
                        "WHERE id = ?",
@@ -26,5 +26,7 @@ class ActorManager:
 
     def delete(self, id: int) -> None:
         cursor = self.conn.cursor()
-        cursor.execute("DELETE FROM actors WHERE id = ?", (id))
+        cursor.execute("DELETE FROM actors"
+                       "WHERE id = ?",
+                       (id))
         self.conn.commit()
