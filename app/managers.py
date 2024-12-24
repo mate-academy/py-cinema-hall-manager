@@ -3,29 +3,28 @@ from models import Actor
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.conn = sqlite3.connect("cinema.sqlite")
-    
-    def create(self, first_name: str, last_name: str):
-        self.conn.execute("INSERT INTO actors (first_name, last_name)"
-                       "VALUES (?, ?)",
-                       (first_name, last_name))
-        self.conn.commit()
-        self.conn.close()
 
-    def all(self):
+    def create(self, first_name: str, last_name: str) -> None:
+        self.conn.execute("INSERT INTO actors (first_name, last_name)"
+                          "VALUES (?, ?)",
+                          (first_name, last_name))
+        self.conn.commit()
+
+    def all(self) -> list[Actor]:
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM actors")
         return [Actor(*row) for row in cursor.fetchall()]
-    
-    def update(self, actor):
-        cursor = self.conn.cursor()
-        cursor.execute("UPDATE actors SET name = ?, age = ? WHERE id = ?", (actor.name, actor.age, actor.id))
-        self.conn.commit()
-        self.conn.close()
 
-    def delete(self, actor):
+    def update(self, first_name: str, last_name: str, id: int) -> None:
         cursor = self.conn.cursor()
-        cursor.execute("DELETE FROM actors WHERE id = ?", (actor.id,))
+        cursor.execute("UPDATE actors SET first_name = ?, last_name = ?"
+                       "WHERE id = ?",
+                       (first_name, last_name, id))
         self.conn.commit()
-        self.conn.close()
+
+    def delete(self, id: int) -> None:
+        cursor = self.conn.cursor()
+        cursor.execute("DELETE FROM actors WHERE id = ?", (id))
+        self.conn.commit()
