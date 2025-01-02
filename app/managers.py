@@ -1,5 +1,7 @@
 from models import Actor
 import sqlite3
+
+
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema.sqlite3")
@@ -37,12 +39,12 @@ class ActorManager:
     def update(self, id_to_update: int,
                first_name: str, last_name: str) -> None:
         # updates properties for entry with given id
-            self._connection.execute(
-                f"UPDATE {self.table_name} "
-                "SET first_name = ?, last_name = ? WHERE id = ?",
-                (first_name, last_name, id_to_update)
-            )
-            self._connection.commit()
+        self._connection.execute(
+            f"UPDATE {self.table_name} "
+            "SET first_name = ?, last_name = ? WHERE id = ?",
+            (first_name, last_name, id_to_update)
+        )
+        self._connection.commit()
 
     def delete(self, id: int) -> None:
         # deletes entry with given id from DB
