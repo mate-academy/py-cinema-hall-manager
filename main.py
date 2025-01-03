@@ -1,8 +1,7 @@
-from managers import ActorManagers
+from managers import ActorManager
 from models import Actor
 
+actor_manager = ActorManager()
 
-if __name__ == '__main__':
-    Actor.objects =ActorManagers()
-    print(Actor.objects.all())
+print(actor_manager.all())
 
