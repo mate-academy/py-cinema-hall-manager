@@ -1,6 +1,7 @@
 import sqlite3
 from models import Actor
 
+
 class ActorManager:
     def __init__(self):
         self.connection = sqlite3.connect('cinema.db')
@@ -16,7 +17,7 @@ class ActorManager:
         self.connection.execute(
             f"SELECT * FROM {self.table_name}"
         )
-        return self.connection.fetchall()
+        self.connection.fetchall()
 
     def update(self, actor: Actor):
         self.connection.execute(
@@ -25,9 +26,9 @@ class ActorManager:
         )
         self.connection.commit()
 
-    def delete(self, id_to_delete: int):
+    def delete(self, delete_id: int):
         self.connection.execute(
             f"DELETE FROM {self.table_name} WHERE id = ?",
-            (id_to_delete,)
+            (delete_id,)
         )
         self.connection.commit()
