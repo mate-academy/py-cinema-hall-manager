@@ -17,7 +17,9 @@ class ActorManager:
     def select_all(self) -> list:
         cursor = self.connection.execute(f"SELECT * FROM {self.table_name}")
         rows = cursor.fetchall()
-        return rows
+        actors = [Actor(id=row[0], first_name=row[1], last_name=row[2])
+                  for row in rows]
+        return actors
 
     def update(self, actor: Actor) -> None:
         self.connection.execute(
@@ -33,3 +35,6 @@ class ActorManager:
             (delete_id,)
         )
         self.connection.commit()
+
+    def close(self) -> None:
+        self.connection.close()
