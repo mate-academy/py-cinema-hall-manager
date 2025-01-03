@@ -6,20 +6,7 @@ from models import Actor
 class ActorManager:
     def __init__(self) -> None:
         self._connection = sqlite3.connect("cinema.sqlite")
-        self.table_name = "actor"
-        self._create_table()
-
-    def _create_table(self) -> None:
-        self._connection.execute(
-            f"""
-            CREATE TABLE IF NOT EXISTS {self.table_name} (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                first_name TEXT NOT NULL,
-                last_name TEXT NOT NULL
-            )
-            """
-        )
-        self._connection.commit()
+        self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self._connection.execute(
