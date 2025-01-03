@@ -5,7 +5,7 @@ if __name__ == "__main__":
     Actor.objects = ActorManager()
 
     Actor.objects.create(_first_name="Emma", _last_name="Watson")
-    Actor.objects.create(_first_name="Daniel", _last_name="Radclife")
+    Actor.objects.create(_first_name="Daniel", _last_name="Balaclava")
     print(Actor.objects.all())
     Actor.objects.update(2, "Daniel", "Radcliffe")
     print(Actor.objects.all())
