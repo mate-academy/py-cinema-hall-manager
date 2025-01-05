@@ -6,6 +6,7 @@ if __name__ == "__main__":
     Actor.objects = ActorManager()
 
     Actor.objects.create(first_name="Emma", last_name="Watson")
+    # There is a typo below for purpose
     Actor.objects.create(first_name="Daniel", last_name="Radclife")
     print(Actor.objects.all())
     Actor.objects.update(2, "Daniel", "Radcliffe")

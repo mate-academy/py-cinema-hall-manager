@@ -5,7 +5,7 @@ from models import Actor
 
 class ActorManager:
     def __init__(self) -> None:
-        self._connection = sqlite3.connect("cinema.sql")
+        self._connection = sqlite3.connect("cinema")
         self.table_name = "actors"
 
     def all(self) -> list[Actor]:
@@ -46,10 +46,5 @@ class ActorManager:
             f"DELETE FROM {self.table_name} "
             f"WHERE id = ?",
             (id_of_object, )
-        )
-
-        # Code below resets the auto-increment counter
-        self._connection.execute(
-            f"DELETE FROM sqlite_sequence WHERE name = '{self.table_name}'"
         )
         self._connection.commit()
