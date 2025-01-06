@@ -3,10 +3,11 @@ import sqlite3
 
 from models import Actor
 
+
 class ActorManager:
-    def __init__(self):
-        self._connection = sqlite3.connect('cinema_db.sqlite')
-        self.table_name = 'actors'
+    def __init__(self) -> None:
+        self._connection = sqlite3.connect("cinema_db.sqlite")
+        self.table_name = "actors"
         self._connection.execute("""
             CREATE TABLE IF NOT EXISTS actors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,7 +30,13 @@ class ActorManager:
         """)
         return [Actor(*row) for row in actors_cursor]
 
-    def update(self, id_to_update: int, new_first_name: str, new_last_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            new_first_name: str,
+            new_last_name: str
+    ) -> None:
+
         self._connection.execute("""
         UPDATE actors
         SET first_name = ?, last_name = ?
