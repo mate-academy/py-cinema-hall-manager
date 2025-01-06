@@ -4,9 +4,9 @@ from models import Actor
 
 
 class ActorManager:
-    def __init__(self):
-        self.connection = sqlite3.connect('cinema.sqlite')
-        self.table_name = 'actors'
+    def __init__(self) -> None:
+        self.connection = sqlite3.connect("cinema.sqlite")
+        self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str) -> None:
         self.connection.execute(
@@ -16,11 +16,10 @@ class ActorManager:
         )
         self.connection.commit()
 
-    def all(self):
+    def all(self) -> list:
         cursor = self.connection.cursor()
         cursor.execute(f"SELECT * FROM {self.table_name}")
         return [Actor(*row) for row in cursor]
-
 
     def update(self, id_: int, first_name: str, last_name: str) -> None:
         self.connection.execute(
