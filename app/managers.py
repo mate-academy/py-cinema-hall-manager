@@ -1,4 +1,6 @@
 import sqlite3
+from typing import Optional
+import traceback
 from models import Actor
 
 
@@ -7,10 +9,15 @@ class ActorManager:
         self.connection = sqlite3.connect("cinema.sqlite")
         self.table_name = "actors"
 
-    def __enter__(self):
+    def __enter__(self) -> "ActorManager":
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(
+            self,
+            exc_type: Optional[type],
+            exc_val: Optional[BaseException],
+            exc_tb: Optional[traceback]
+    ) -> None:
         self.connection.close()
 
     def create(
