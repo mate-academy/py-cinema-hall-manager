@@ -33,3 +33,4 @@ class ActorManager:
             "DELETE FROM actors WHERE id = ?",
             (id,)
         )
+        self.connection.commit()
