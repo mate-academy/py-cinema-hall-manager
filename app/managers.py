@@ -23,10 +23,17 @@ class ActorManager:
         return [Actor(*row) for row in cursor]
 
     def update(self, actor_id: int, column_name: str, new_value: str) -> None:
-        self._connection.execute(f"UPDATE {self.table_name} "
-                                 f"SET {column_name} = ? "
-                                 f"WHERE id = ?",
-                                 (new_value, actor_id))
+        allowed_columns = {"first_name", "last_name"}
+
+        if column_name not in allowed_columns:
+            raise ValueError(f"Invalid column name: {column_name}")
+
+        self._connection.execute(
+            f"UPDATE {self.table_name} "
+            f"SET {column_name} = ? "
+            f"WHERE id = ?",
+            (new_value, actor_id)
+        )
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
