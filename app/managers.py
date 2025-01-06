@@ -22,16 +22,16 @@ class ActorManager:
             Actor(*row) for row in actors_cursor
         ]
 
-    def update(self, id_to_upadate: int,
+    def update(self, id_to_update: int,
                new_first_name: str,
                new_last_name: str) -> None:
-        self._connection.execute(f"UPDATE actors "
-                                 f"SET first_name='{new_first_name}', "
-                                 f"last_name='{new_last_name}'"
-                                 f"WHERE id={id_to_upadate}")
+        self._connection.execute("UPDATE actors "
+                                 "SET first_name=(?), last_name=(?)"
+                                 "WHERE id=(?)",
+                                 (new_first_name, new_last_name, id_to_update))
         self._connection.commit()
 
     def delete(self, id_to_delete: int) -> None:
-        self._connection.execute(f"DELETE FROM actors "
-                                 f"WHERE id={id_to_delete}")
+        self._connection.execute("DELETE FROM actors WHERE id=(?)",
+                                 (id_to_delete,))
         self._connection.commit()
