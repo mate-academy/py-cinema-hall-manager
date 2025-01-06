@@ -7,6 +7,12 @@ class ActorManager:
         self.connection = sqlite3.connect("cinema.sqlite")
         self.table_name = "actors"
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connection.close()
+
     def create(
             self,
             first_name: str,
