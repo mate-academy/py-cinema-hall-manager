@@ -11,4 +11,4 @@ if __name__ == "__main__":
         actor_manager.delete(1)
         print(actor_manager.all())
 
-        # actor_manager.delete_all()
+        actor_manager.delete_all()
