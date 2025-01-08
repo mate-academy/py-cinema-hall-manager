@@ -17,13 +17,13 @@ class ActorManager:
     def update(self, actor_id, first_name, last_name):
         self._connection.execute(
             f"UPDATE {self.table_name} SET first_name = ?, last_name = ? WHERE id = ?",
-            (first_name, last_name, actor_id),
+            (actor_id, first_name, last_name),
         )
         self._connection.commit()
 
     def all(self):
         actor_manager_cursor = self._connection.execute(
-            f"SELECT * FROM actors"
+            f"SELECT id, first_name, last_name FROM actors"
         )
         return [
             Actor(*row) for row in actor_manager_cursor
