@@ -5,9 +5,9 @@
 #     Actor.objects = ActorManager()
 #
 #     Actor.objects.create(first_name="Emma", last_name="Watson")
-#     Actor.objects.create(first_name="Daniel", last_name="Radclife")
+#     Actor.objects.create(first_name="Daniel", last_name="Radcliffe")
 #     print(Actor.objects.all())
 #     Actor.objects.update(2, "Daniel", "Radcliffe")
 #     print(Actor.objects.all())
-#     Actor.objects.delete(1)
+#     Actor.objects.delete(2)
 #     print(Actor.objects.all())
