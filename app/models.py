@@ -7,5 +7,5 @@ class Actor:
     first_name: str
     last_name: str
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.id} {self.first_name} {self.last_name}"
