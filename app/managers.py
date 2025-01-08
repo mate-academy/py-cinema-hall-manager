@@ -17,7 +17,7 @@ class ActorManager:
     def update(self, actor_id, first_name, last_name):
         self._connection.execute(
             f"UPDATE {self.table_name} SET first_name = ?, last_name = ? WHERE id = ?",
-            (actor_id, first_name, last_name),
+            (first_name, last_name, actor_id),
         )
         self._connection.commit()
 
