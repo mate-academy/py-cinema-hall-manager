@@ -1,23 +1,31 @@
-import os
 import sqlite3
 
 from app.models import Actor
 
 
 class ActorManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self._connection = sqlite3.connect("../cinema.sqlite")
-        self.table_name = 'actors'
+        self.table_name = "actors"
 
     def create(self, first_name: str, last_name: str = None) -> None:
-        self._connection.execute(f"INSERT INTO {self.table_name} (first_name, last_name) VALUES (?, ?)", (first_name, last_name))
+        self._connection.execute(
+            f"INSERT INTO {self.table_name} (first_name, last_name) "
+            f"VALUES (?, ?)", (first_name, last_name))
         self._connection.commit()
 
-    def all(self):
-        self.actors_cursor = self._connection.execute(f"SELECT * FROM {self.table_name}")
+    def all(self) -> list[Actor]:
+        self.actors_cursor = self._connection.execute(
+            f"SELECT * FROM {self.table_name}"
+        )
         return [Actor(*row) for row in self.actors_cursor]
 
-    def update(self, id_to_update: int, new_first_name: str, new_lat_name: str) -> None:
+    def update(
+            self,
+            id_to_update: int,
+            new_first_name: str,
+            new_lat_name: str
+    ) -> None:
         self._connection.execute(
             f"UPDATE {self.table_name} "
             f"SET first_name=?, last_name=? "
