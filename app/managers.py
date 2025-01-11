@@ -5,30 +5,23 @@ from app.models import Actor
 
 
 class ActorManager:
-    _DB_PATH = "cinema.sqlite"
-    _TABLE_NAME = "actors"
+    def __init__(self, db_path: str, table_name: str):
+        self._db_path = db_path
+        self._table_name = table_name
+
+        self.conn = sqlite3.connect(self._db_path)
 
     def all(self) -> list[Actor]:
-        with sqlite3.connect(self._DB_PATH) as conn:
-            actors_cursor = conn.execute(
-                f"SELECT * FROM {self._TABLE_NAME}")
-            return [Actor(*row) for row in actors_cursor]
+        cursor = self.conn.execute(f"SELECT * FROM {self._table_name}")
+        return [Actor(*row) for row in cursor]
 
-    def create(self, _first_name : str, _last_name: str) -> None:
-        with sqlite3.connect(self._DB_PATH) as conn:
-            conn.execute(
-                f"INSERT INTO {self._TABLE_NAME} VALUES (?, ?)",
-                (_first_name, _last_name))
+    def create(self, first_name: str, last_name: str) -> None:
+        self.conn.execute(
+            f"INSERT INTO {self._table_name} VALUES (?, ?)",
+            (first_name, last_name)
+        )
+        self.conn.commit()
 
-    def update(self, _id : int, _first_name : str, _last_name: str) -> None:
-        with sqlite3.connect(self._DB_PATH) as conn:
-            conn.execute(
-                f"UPDATE {self._TABLE_NAME} "
-                f"SET first_name = ?, last_name = ? WHERE id = ?",
-                (_first_name, _last_name, _id))
-
-    def delete(self, _id : int) -> None:
-        with sqlite3.connect(self._DB_PATH) as conn:
-            conn.execute(
-                f"DELETE FROM {self._TABLE_NAME} WHERE id = ?",
-                (_id,))
+    def __del__(self):
+        if self.conn:
+            self.conn.close()
