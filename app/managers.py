@@ -5,7 +5,7 @@ from app.models import Actor
 
 
 class ActorManager:
-    def __init__(self, db_path: str, table_name: str):
+    def __init__(self, db_path: str, table_name: str) -> None:
         self._db_path = db_path
         self._table_name = table_name
 
@@ -22,6 +22,6 @@ class ActorManager:
         )
         self.conn.commit()
 
-    def __del__(self):
+    def __del__(self) -> None:
         if self.conn:
             self.conn.close()
