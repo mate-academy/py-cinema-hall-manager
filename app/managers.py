@@ -1,12 +1,7 @@
 import sqlite3
-from dataclasses import dataclass
+from models import Actor
 
 
-@dataclass
-class Actor:
-    id: int
-    first_name: str
-    last_name: str
 
 
 class ActorManager:
