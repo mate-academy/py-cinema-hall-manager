@@ -2,8 +2,6 @@ import sqlite3
 from models import Actor
 
 
-
-
 class ActorManager:
     def __init__(self, db_path: str, table_name: str) -> None:
         self._db_path = db_path
@@ -16,12 +14,15 @@ class ActorManager:
 
     def create(self, first_name: str, last_name: str) -> None:
         self.conn.execute(
-            f"INSERT INTO {self._table_name} (first_name, last_name) VALUES (?, ?)",
+            f"INSERT INTO {self._table_name}"
+            f" (first_name, last_name) VALUES (?, ?)",
             (first_name, last_name)
         )
         self.conn.commit()
 
-    def update(self, actor_id: int, first_name: str = None, last_name: str = None) -> None:
+    def update(self, actor_id: int,
+               first_name: str = None,
+               last_name: str = None) -> None:
         updates = []
         params = []
         if first_name:
