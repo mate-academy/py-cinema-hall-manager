@@ -10,7 +10,7 @@ class ActorManager:
 
     def all(self) -> list[Actor]:
         cursor = self.conn.execute(f"SELECT * FROM {self._table_name}")
-        return [Actor(*row) for row in cursor]
+        return cursor.fetchall()
 
     def create(self, first_name: str, last_name: str) -> None:
         self.conn.execute(
